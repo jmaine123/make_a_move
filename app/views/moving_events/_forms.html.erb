@@ -8,8 +8,6 @@
 <%= f.number_field :amount_of_furniture, placeholder: 'Amount of furniture'%><br><br>
 <%= f.number_field :movers_needed, placeholder: 'Amount of movers needed'%><br><br>
 
-<%= f.collection_select(:mover_id, Mover.all, :id, :first_name, {:prompt => 'Please select Movers to assist you'}) %>
-
 <%= f.submit "Create" %>
 
 <%end%>

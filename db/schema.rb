@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_24_161829) do
+ActiveRecord::Schema.define(version: 2018_09_25_204909) do
 
   create_table "movees", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "location"
-    t.integer "age"
-    t.string "occupation"
     t.string "email"
+    t.integer "age"
+    t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_movees_on_email", unique: true
@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 2018_09_24_161829) do
     t.string "first_name"
     t.string "last_name"
     t.string "location"
-    t.boolean "van"
     t.integer "age"
     t.string "email"
     t.integer "rating"
@@ -39,6 +38,7 @@ ActiveRecord::Schema.define(version: 2018_09_24_161829) do
     t.integer "movee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_movers_on_email", unique: true
     t.index ["movee_id"], name: "index_movers_on_movee_id"
     t.index ["moving_event_id"], name: "index_movers_on_moving_event_id"
   end
@@ -51,14 +51,13 @@ ActiveRecord::Schema.define(version: 2018_09_24_161829) do
     t.integer "amount_of_furniture"
     t.string "difficulty"
     t.integer "movers_needed"
+    t.text "movers_list"
     t.date "start_time"
     t.date "end_time"
-    t.integer "mover_id"
     t.integer "movee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["movee_id"], name: "index_moving_events_on_movee_id"
-    t.index ["mover_id"], name: "index_moving_events_on_mover_id"
   end
 
 end

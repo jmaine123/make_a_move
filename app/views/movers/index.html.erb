@@ -1,3 +1,7 @@
-<h1>Movers#index</h1>
+<h1>List of available movers</h1>
 
-<%%>
+<ol>
+<%@movers.each do |m|%>
+<li><%=link_to m.first_name, m_path%></li>
+<%end%>
+</ol>

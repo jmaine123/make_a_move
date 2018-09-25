@@ -4,7 +4,6 @@ class CreateMovers < ActiveRecord::Migration[5.2]
       t.string :first_name
       t.string :last_name
       t.string :location
-      t.boolean :van
       t.integer :age
       t.string :email
       t.integer :rating
@@ -16,5 +15,6 @@ class CreateMovers < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
+    add_index :movers, :email, unique: true
   end
 end

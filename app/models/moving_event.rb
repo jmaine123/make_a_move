@@ -1,4 +1,4 @@
 class MovingEvent < ApplicationRecord
-  belongs_to :movee, optional: true
-  belongs_to :mover, optional: true
+  has_many :movers
+  has_one :movee
 end

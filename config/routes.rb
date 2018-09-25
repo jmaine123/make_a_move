@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   end
 
   root 'pages#home'
-post '/movees/:movee_id/moving_events/new' => 'moving_events#create'
+post '/movers/:mover_id/moving_events/new' => 'moving_events#create'
 end

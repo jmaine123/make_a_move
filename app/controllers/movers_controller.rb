@@ -1,5 +1,5 @@
 class MoversController < ApplicationController
-  before_action :find_mover
+  before_action :find_mover, only: [:show, :edit, :update, :destroy]
   def new
     @mover = Mover.new
   end
@@ -17,7 +17,7 @@ class MoversController < ApplicationController
   end
 
   def update
-    
+
   end
 
   def show
