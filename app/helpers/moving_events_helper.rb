@@ -1,0 +1,2 @@
+module MovingEventsHelper
+end

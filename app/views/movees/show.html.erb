@@ -1,0 +1,15 @@
+
+<h4><%=@movee.first_name%> <%=@movee.last_name%></h4>
+<h4><%=@movee.email%></h4>
+<%= vue_form_for movee_moving_events_path(@movee.id) do |f|%>
+  <%= f.text_field :name, placeholder:'Name' %><br><br>
+  <%= f.text_field :description, placeholder: 'Details of the event'%><br><br>
+  <%= f.text_field :old_location, placeholder:'Where are you moving from?' %><br><br>
+  <%= f.text_field :new_location,placeholder:'Where are you moving to?'%><br><br>
+  <%= f.date_field :start_date, placeholder: 'Start Date'%><br><br>
+  <%= f.date_field :end_date, placeholder: 'End Date' %><br><br>
+  <%= f.number_field :amount_of_furniture, placeholder: 'Amount of furniture'%><br><br>
+
+
+  <%= f.submit "Create" %>
+<% end %>

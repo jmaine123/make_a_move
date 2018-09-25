@@ -1,0 +1,15 @@
+<%= vue_form_for([@movee, @moving_event]) do |f|%>
+<%= f.text_field :name, placeholder:'Name' %><br><br>
+<%= f.text_field :description, placeholder: 'Details of the event'%><br><br>
+<%= f.text_field :old_location, placeholder:'Where are you moving from?' %><br><br>
+<%= f.text_field :new_location,placeholder:'Where are you moving to?'%><br><br>
+<%= f.date_field :start_time, placeholder: 'Start Date'%><br><br>
+<%= f.date_field :end_time, placeholder: 'End Date' %><br><br>
+<%= f.number_field :amount_of_furniture, placeholder: 'Amount of furniture'%><br><br>
+<%= f.number_field :movers_needed, placeholder: 'Amount of movers needed'%><br><br>
+
+<%= f.collection_select(:mover_id, Mover.all, :id, :first_name, {:prompt => 'Please select Movers to assist you'}) %>
+
+<%= f.submit "Create" %>
+
+<%end%>

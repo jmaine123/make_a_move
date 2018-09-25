@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: 
+  last_name: 
+  location: 
+  van: false
+  age: 1
+  email: 
+  rating: 1
+  karma_points: 1
+  occupation: 
+  bio: MyText
+  moving_event: one
+  movee: one
+
+two:
+  first_name: 
+  last_name: 
+  location: 
+  van: false
+  age: 1
+  email: 
+  rating: 1
+  karma_points: 1
+  occupation: 
+  bio: MyText
+  moving_event: two
+  movee: two
