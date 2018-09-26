@@ -15,5 +15,70 @@
  */
 
  html{
-   background-image: 
+   background-color: rgb(242, 205, 184);
+   color:rgb(234, 81, 21);
+   font-family: 'Luckiest Guy', cursive;
+   line-height: 1em;
+   font-size: 1.5em;
+ }
+
+ .title{
+   text-align: center;
+   font-size: 2.5em;
+ }
+
+ h1{
+   text-shadow: 3px 3px black;
+   letter-spacing: .1vw;
+
+ }
+
+ input{
+   border-radius: 5%;
+   border: 1px solid black;
+ }
+
+ .two_main_btn{
+   display: grid;
+   grid-template: 100%/repeat(2, 1fr);
+   text-align: center;
+   width:90%;
+   margin:0 auto;
+ }
+ .main_choices{
+   background-color: rgb(234, 81, 21);
+   padding: 3%;
+   border: 1px solid white;
+   border-radius: 10%;
+   width:40%;
+   margin-bottom: 5%;
+   margin: 0 auto;
+   box-shadow: 6px 6px 6px black;
+ }
+
+ .large_btn{
+   text-decoration:none;
+   color: white;
+ }
+
+ .moving_van_img{
+   width:50%;
+   height:30%;
+ }
+
+ .moving_van_img img{
+   height:100%;
+   width:100%;
+ }
+
+ .navbar{
+   font-size: .8em;
+ }
+
+ .navbar a{
+   text-decoration: none;
+   color: white;
+   text-shadow: 1px 1px rgb(234, 81, 21);
+   margin-right: 5%;
+   text-align: center;
  }

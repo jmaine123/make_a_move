@@ -1,4 +1,14 @@
-<h1>Make A Move</h1>
+<h1 class='title'>Make A Move</h1>
+
+<div class="two_main_btn">
+  <div class="main_choices">
+    <%=link_to 'Become a mover', new_mover_path, class: 'large_btn'%>
+  </div>
+  <div class="main_choices">
+    <%= link_to 'Find help to move', new_movee_path, class: 'large_btn'%>
+  </div>
+
+</div>
 
 <div id="app">
   {{ message }}
@@ -10,6 +20,6 @@
     to see my dynamically bound title!
   </span>
 </div>
-
-<%=link_to 'Become a mover', new_mover_path%>
-<%= link_to 'Find help to move', new_movee_path%>
+<div class="moving_van_img">
+  <img src="https://melbournechapter.net/images/clipart-moving-truck.png" alt="">
+</div>

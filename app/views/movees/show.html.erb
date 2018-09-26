@@ -5,3 +5,10 @@
 <%=link_to 'Find a mover', movers_path%>
 
 <%=link_to 'Create a moving event', new_movee_moving_event_path(@movee.id)%>
+
+<ol>
+  <% @movee.moving_events.each do |event|%>
+  <li><%=link_to event.name, movee_moving_event_path(@movee.id, event.id)%></li>
+
+  <%end%>
+</ol>

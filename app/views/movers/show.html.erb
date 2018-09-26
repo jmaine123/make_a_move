@@ -1,10 +1,13 @@
 
 
-<h1><%=@mover.first_name %> <%=@mover.last_name%></h1>
+<h1><%=@mover.full_name%></h1>
 
 <p><%= @mover.email%></p>
 <p><%= @mover.location%></p>
 <p><%= @mover.age%></p>
+<% if !@mover.rating.nil?%>
+<h4><%= @movee.rating%></h4>
+<% end%>
 
 <%= form_for @mover, :url => {:controller => 'movers', :action => "update"} do %>
 <%=collection_select(:mover, :moving_event_id, MovingEvent.all, :id, :name)%>
