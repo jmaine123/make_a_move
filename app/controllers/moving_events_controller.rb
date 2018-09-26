@@ -1,4 +1,5 @@
 class MovingEventsController < ApplicationController
+  before_action :find_moving_event, except:[:new, :create, :index]
   before_action :find_movee
   def new
     @moving_event = MovingEvent.new
@@ -24,10 +25,13 @@ class MovingEventsController < ApplicationController
   def update
     if @moving_event.update(moving_event_params)
       flash[:notice] = "Successfully updated"
-      
+
     else
       render 'edit'
     end
+  end
+
+  def destroy
   end
 
   def show
@@ -40,7 +44,15 @@ class MovingEventsController < ApplicationController
   end
 
   def find_movee
-    @movee = Movee.find_by(params[:id])
+    @movee = Movee.find_by(params[:movee_id])
+  end
+
+  def find_moving_event
+    @moving_event = MovingEvent.find(params[:id])
+  end
+
+  def find_mover
+    @mover = Mover.all
   end
 
 end

@@ -2,6 +2,6 @@
 
 <% @movee.moving_events.each do |e|%>
 
-<%=e.name%><br>
+<%=link_to e.name, movee_moving_event_path(@movee.id, e.id)%><br>
 
 <%end%>

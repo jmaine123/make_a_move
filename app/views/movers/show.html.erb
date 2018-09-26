@@ -1,1 +1,22 @@
+
+
 <h1><%=@mover.first_name %> <%=@mover.last_name%></h1>
+
+<p><%= @mover.email%></p>
+<p><%= @mover.location%></p>
+<p><%= @mover.age%></p>
+
+<%= form_for @mover, :url => {:controller => 'movers', :action => "update"} do %>
+<%=collection_select(:mover, :moving_event_id, MovingEvent.all, :id, :name)%>
+<%=submit_tag 'Help move'%>
+<% end%>
+
+<h3>Moving Events available</h3>
+
+<% MovingEvent.all.each do |event|%>
+<li><%= link_to event.name, movee_moving_event_path(event.movee_id, event.id)%> <%=event.start_time%> <%=event.movee_id%></li>
+<%end%>
+
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
