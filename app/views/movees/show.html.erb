@@ -9,6 +9,6 @@
 <ol>
   <% @movee.moving_events.each do |event|%>
   <li><%=link_to event.name, movee_moving_event_path(@movee.id, event.id)%></li>
-
+  <p>Movers needed: <%=event.movers_needed%></p><p>Movers available: <%=event.movers.count%></p>
   <%end%>
 </ol>

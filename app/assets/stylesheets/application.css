@@ -15,6 +15,7 @@
  */
 
  html{
+   background-image: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.7) 100%), url('https://images.unsplash.com/photo-1479888230021-c24f136d849f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=12eb4731666fa91cdb189dbf094a29ec&auto=format&fit=crop&w=1350&q=80');
    background-color: rgb(242, 205, 184);
    color:rgb(234, 81, 21);
    font-family: 'Luckiest Guy', cursive;
@@ -28,7 +29,7 @@
  }
 
  h1{
-   text-shadow: 3px 3px black;
+   text-shadow: 3px 3px rgb(242, 205, 184);
    letter-spacing: .1vw;
 
  }

@@ -1,12 +1,3 @@
 <h1>Movees#new</h1>
 <h4>Need help moving? Sign up to get help from available moverss</h4>
-
-<%=form_for(@movee) do |f|%>
-<%= f.text_field :first_name, placeholder: 'First Name' %><br><br>
-<%= f.text_field :last_name, placeholder: 'Last Name' %><br><br>
-<%= f.email_field :email, placeholder: 'What is your email?'%><br><br>
-<%= f.number_field :age, placeholder: 'Age'%><br><br>
-<%= f.text_field :location, placeholder: 'Where are you located currently'%> <br>
-
-<%= f.submit 'Create', class:'submit-btns'%>
-<%end%>
+<%= render 'forms'%>

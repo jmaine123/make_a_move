@@ -4,7 +4,8 @@
 <li>Ending Day: <%=@moving_event.end_time.strftime("%m/%d/%y")%></li>
 
 <ol>
+  <h2>The Crew</h2>
   <% @moving_event.movers.each do |mover|%>
-  <li><%= link_to mover.full_name, mover%>  <%=link_to 'remove'%></li> 
+  <li><%= link_to mover.full_name, mover%>  <%=link_to 'remove'%></li>
   <%end%>
 </ol>
