@@ -25,8 +25,6 @@ class MoveesController < ApplicationController
     @movees = Movee.all
   end
 
-  def mover
-  end
 
   private
 

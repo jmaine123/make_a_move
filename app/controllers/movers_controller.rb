@@ -7,10 +7,12 @@ class MoversController < ApplicationController
 
   def create
     @mover = Mover.new(mover_params)
+    p mover_params[:user_attributes]
     if @mover.save
+      @mover.create_user()
       redirect_to @mover
     else
-      render 'new'
+      redirect_to root_path
     end
   end
 
@@ -45,7 +47,7 @@ class MoversController < ApplicationController
   private
 
   def mover_params
-    params.require(:mover).permit(:first_name, :last_name, :age, :email, :occupation, :location, :moving_event_id, :id)
+    params.require(:mover).permit(:first_name, :last_name, :age, :occupation, :location, :moving_event_id, :id, user_attributes: [ :id, :email, :password ])
   end
 
   def find_mover
@@ -57,7 +59,7 @@ class MoversController < ApplicationController
   end
 
   def find_moving_event
-    @moving_event = MovingEvent.find(params[:id])
+    @moving_event = MovingEvent.find_by(params[:moving_event_id])
   end
 
   def find_movee

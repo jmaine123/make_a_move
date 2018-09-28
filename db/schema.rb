@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_25_204909) do
+ActiveRecord::Schema.define(version: 2018_09_27_232647) do
 
   create_table "movees", force: :cascade do |t|
     t.string "first_name"
@@ -58,6 +58,31 @@ ActiveRecord::Schema.define(version: 2018_09_25_204909) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["movee_id"], name: "index_moving_events_on_movee_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "comment"
+    t.integer "mover_rating"
+    t.integer "mover_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mover_id"], name: "index_reviews_on_mover_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "username"
+    t.string "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "meta_id"
+    t.string "meta_type"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

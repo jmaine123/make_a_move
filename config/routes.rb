@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :movers
+
+devise_for :users
+  resources :movers do
+    resources :users
+    resources :reviews
+  end
   resources :movees do
     resources :moving_events
   end
