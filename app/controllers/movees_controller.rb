@@ -25,11 +25,14 @@ class MoveesController < ApplicationController
     @movees = Movee.all
   end
 
+  def destroy
+  end
+
 
   private
 
   def movee_params
-    params.require(:movee).permit(:first_name, :last_name, :age, :email, :occupation, :location)
+    params.require(:movee).permit(:first_name, :last_name, :age, :email, :occupation, :location_street, :location_city, :location_state, :phone_number)
   end
 
   def find_movee

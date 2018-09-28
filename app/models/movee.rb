@@ -5,4 +5,8 @@ class Movee < ApplicationRecord
   def full_name
     self.first_name + ' ' + self.last_name
   end
+
+  def location
+    self.location_street + ', ' + self.location_city + ' '+ self.location_state
+  end
 end

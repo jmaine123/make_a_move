@@ -4,12 +4,17 @@
   <%= f.text_field :last_name, placeholder: 'Last Name' %><br><br>
   <%=f.fields_for(new_user_registration_path) do |u|%>
     <%= u.email_field :email, placeholder: 'What is your email?'%><br><br>
+    <%= u.text_field :username, placeholder: 'username'%><br><br>
     <%= u.password_field :password, placeholder:'Create a password'%><br><br>
   <%end%>
   <%= f.number_field :age, placeholder: 'Age'%><br><br>
   <%= f.text_field :occupation, placeholder: 'occupation' %><br><br>
-  <%= f.text_field :location, placeholder: 'Where are you located currently'%> <br>
-
+  <%=label_tag 'Address: Street, City, State'%><br>
+  <%= f.text_field :location_street, placeholder:'Street'%>
+  <%= f.text_field :location_city, placeholder:'City'%>
+  <%= f.text_field :location_state, placeholder:'State'%> <br>
+  <%=label_tag 'Phone Number'%><br>
+  <%=f.telephone_field(:phone_number)%><br>
   <%= f.submit 'Create', class:'submit-btns'%>
   <%end%>
 </div>

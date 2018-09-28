@@ -20,7 +20,32 @@
 <li><%= link_to event.name, movee_moving_event_path(event.movee_id, event.id)%><br> <%=event.start_time%></li>
 <%end%>
 <br><br>
-<%= link_to 'Make a Review'%>
+<%= link_to 'Make a Review', new_mover_review_path(@mover.id)%>
+
+
+<ol>
+  <%@mover.reviews. each do |review|%>
+    <%if review.comment != ''%>
+    <li><h3><%= review.comment%></h3>
+      Rating:
+      <div class="mover_stars">
+        <%(review.mover_rating).times do%>
+        <div class="stars">
+          <img src="http://pngimg.com/uploads/star/star_PNG41531.png" alt="">
+        </div>
+
+        <%end%>
+      </div>
+
+    </li>
+    <%end%>
+  <%end%>
+</ol>
+
+<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@mover.latitude},#{@mover.longitude}&markers=#{@mover.latitude},#{@mover.longitude}&zoom=15&size=640x400&key=AIzaSyDs5XjtC_PfhFPV7Yl7RCO185HnKnHqlfY",
+              class: 'img-fluid img-rounded', alt: "#{@mover.full_name} on the map"%>
+
+
 
 <% if flash[:notice] %>
   <div class="notice"><%= flash[:notice] %></div>

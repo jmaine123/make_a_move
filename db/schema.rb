@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_27_232647) do
+ActiveRecord::Schema.define(version: 2018_09_28_224948) do
 
   create_table "movees", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.string "location"
+    t.string "location_street"
+    t.string "location_city"
+    t.string "location_state"
     t.string "email"
     t.integer "age"
     t.string "phone_number"
@@ -27,17 +29,21 @@ ActiveRecord::Schema.define(version: 2018_09_27_232647) do
   create_table "movers", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.string "location"
+    t.string "location_street"
+    t.string "location_city"
+    t.string "location_state"
     t.integer "age"
     t.string "email"
     t.integer "rating"
     t.integer "karma_points"
     t.string "occupation"
-    t.text "bio"
+    t.string "phone_number"
     t.integer "moving_event_id"
     t.integer "movee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "longitude"
+    t.float "latitude"
     t.index ["email"], name: "index_movers_on_email", unique: true
     t.index ["movee_id"], name: "index_movers_on_movee_id"
     t.index ["moving_event_id"], name: "index_movers_on_moving_event_id"
@@ -45,15 +51,21 @@ ActiveRecord::Schema.define(version: 2018_09_27_232647) do
 
   create_table "moving_events", force: :cascade do |t|
     t.string "name"
-    t.string "old_location"
-    t.string "new_location"
+    t.string "old_location_street"
+    t.string "old_location_city"
+    t.string "old_location_state"
+    t.string "new_location_street"
+    t.string "new_location_city"
+    t.string "new_location_state"
     t.text "description"
     t.integer "amount_of_furniture"
     t.string "difficulty"
     t.integer "movers_needed"
-    t.text "movers_list"
-    t.date "start_time"
-    t.date "end_time"
+    t.date "start_date"
+    t.string "start_time"
+    t.integer "estimate_hours"
+    t.integer "payment_per_hour"
+    t.boolean "giveaways"
     t.integer "movee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -61,7 +73,7 @@ ActiveRecord::Schema.define(version: 2018_09_27_232647) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.string "comment"
+    t.text "comment"
     t.integer "mover_rating"
     t.integer "mover_id"
     t.datetime "created_at", null: false

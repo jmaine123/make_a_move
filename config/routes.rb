@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
 devise_for :users
   resources :movers do
-    resources :users
     resources :reviews
   end
   resources :movees do

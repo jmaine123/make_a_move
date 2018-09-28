@@ -19,8 +19,16 @@
 // })
 
 import Vue from 'vue/dist/vue.esm'
+import * as VueGoogleMaps from "vue2-google-maps";
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  Vue.use(VueGoogleMaps, {
+  load: {
+    key: "AIzaSyDs5XjtC_PfhFPV7Yl7RCO185HnKnHqlfY",
+    libraries: "places" // necessary for places input
+  }
+});
   var app = new Vue({
     el: '#app',
     data: {
@@ -36,6 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   
+
+
+
+
 })
 
 

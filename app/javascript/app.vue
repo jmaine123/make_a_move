@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
-    <p>{{ message }}</p>
-  </div>
+<div id="app">
+  {{ message }}
+</div>
 </template>
 
 <script>
@@ -19,4 +19,5 @@ p {
   font-size: 2em;
   text-align: center;
 }
+
 </style>
