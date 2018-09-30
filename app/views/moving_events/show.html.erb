@@ -1,7 +1,7 @@
 <h1><%=@moving_event.name%></h1>
 
-<li>Starting Day: <%=@moving_event.start_time.strftime("%m/%d/%y")%></li>
-<li>Ending Day: <%=@moving_event.end_time.strftime("%m/%d/%y")%></li>
+<li>Starting Day: <%=@moving_event.start_date.strftime("%m/%d/%y")%></li>
+
 
 <ol>
   <h2>The Crew</h2>
@@ -9,3 +9,6 @@
   <li><%= link_to mover.full_name, mover%>  <%=link_to 'remove'%></li>
   <%end%>
 </ol>
+
+<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@moving_event.latitude},#{@moving_event.longitude}&markers=#{@moving_event.latitude},#{@moving_event.longitude}&zoom=7&size=640x400&key=AIzaSyDs5XjtC_PfhFPV7Yl7RCO185HnKnHqlfY",
+              class: 'img-fluid img-rounded', alt: "#{@moving_event.name} on the map"%>

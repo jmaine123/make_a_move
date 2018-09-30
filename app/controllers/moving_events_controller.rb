@@ -40,7 +40,7 @@ class MovingEventsController < ApplicationController
   private
 
   def moving_event_params
-    params.require(:moving_event).permit(:name, :start_time, :end_time,:description, :old_location, :new_location, :amount_of_furniture, :difficulty, :movers_needed, :distance, :mover_id)
+    params.require(:moving_event).permit(:name, :start_date, :start_time,:description, :old_location_street, :old_location_city, :old_location_state, :new_location_street, :new_location_city, :new_location_state, :amount_of_furniture, :difficulty, :movers_needed, :estimate_hours, :payment_per_hour,:giveaways, :mover_id)
   end
 
   def find_movee

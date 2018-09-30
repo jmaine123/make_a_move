@@ -3,7 +3,9 @@ class CreateMovees < ActiveRecord::Migration[5.2]
     create_table :movees do |t|
       t.string :first_name
       t.string :last_name
-      t.string :location
+      t.string :location_street
+      t.string :location_city
+      t.string :location_state
       t.string :email
       t.integer :age
       t.string :phone_number

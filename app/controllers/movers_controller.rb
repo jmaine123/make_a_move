@@ -1,16 +1,22 @@
 class MoversController < ApplicationController
   before_action :find_mover, only: [:show, :edit, :update, :destroy]
   before_action :find_moving_event, only:[:update]
+
   def new
     @mover = Mover.new
+    @mover.build_user
+
   end
 
   def create
+    current_user
     @mover = Mover.new(mover_params)
-    if @mover.save
+    p "User attributes #{mover_params}"
+    # @mover.create_user(mover_params[:user_attributes])
+    if @mover.save!
       redirect_to @mover
     else
-      render 'new'
+      redirect_to root_path
     end
   end
 
@@ -45,7 +51,7 @@ class MoversController < ApplicationController
   private
 
   def mover_params
-    params.require(:mover).permit(:first_name, :last_name, :age, :email, :occupation, :location, :moving_event_id, :id)
+    params.require(:mover).permit(:first_name, :last_name, :age, :occupation, :phone_number, :location_street, :location_city, :location_state, :moving_event_id, user_attributes: [ :id, :username, :email, :password ])
   end
 
   def find_mover
@@ -57,7 +63,7 @@ class MoversController < ApplicationController
   end
 
   def find_moving_event
-    @moving_event = MovingEvent.find(params[:id])
+    @moving_event = MovingEvent.find_by(params[:moving_event_id])
   end
 
   def find_movee
