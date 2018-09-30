@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_28_224948) do
+ActiveRecord::Schema.define(version: 2018_09_29_000407) do
 
   create_table "movees", force: :cascade do |t|
     t.string "first_name"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 2018_09_28_224948) do
     t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "longitude"
+    t.float "latitude"
     t.index ["email"], name: "index_movees_on_email", unique: true
   end
 
@@ -69,6 +71,8 @@ ActiveRecord::Schema.define(version: 2018_09_28_224948) do
     t.integer "movee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
     t.index ["movee_id"], name: "index_moving_events_on_movee_id"
   end
 

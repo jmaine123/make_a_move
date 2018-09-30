@@ -9,3 +9,6 @@
   <li><%= link_to mover.full_name, mover%>  <%=link_to 'remove'%></li>
   <%end%>
 </ol>
+
+<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@moving_event.latitude},#{@moving_event.longitude}&markers=#{@moving_event.latitude},#{@moving_event.longitude}&zoom=7&size=640x400&key=AIzaSyDs5XjtC_PfhFPV7Yl7RCO185HnKnHqlfY",
+              class: 'img-fluid img-rounded', alt: "#{@moving_event.name} on the map"%>

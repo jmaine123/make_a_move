@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-devise_for :users
+devise_for :users do
+  get '/logout' => 'devise/sessions#destroy'
+end
+
   resources :movers do
     resources :reviews
   end
@@ -8,9 +11,10 @@ devise_for :users
     resources :moving_events
   end
 
-  get '/login' => 'sessions#new'
-  post '/login' => 'sessions#create'
-  delete '/logout' => 'sessions#destroy'
+  # get '/login' => 'sessions#new'
+  # post '/login' => 'sessions#create'
+  # get '/logout' => 'devise/sessions#destroy'
+  # delete '/logout' => 'devise/sessions#destroy'
 
   root 'pages#home'
 post '/movers/:mover_id/moving_events/new' => 'moving_events#create'

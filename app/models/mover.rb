@@ -6,7 +6,7 @@ class Mover < ApplicationRecord
   accepts_nested_attributes_for :user
 
   geocoded_by :full_address
-  after_validation :geocode, if: ->(obj){ obj.full_address.present?}
+  after_validation :geocode, if: ->(obj){ obj.full_address.present? and obj.location_city_changed?}
 
   def full_name
     self.first_name + ' '+ self.last_name
