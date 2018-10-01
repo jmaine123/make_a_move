@@ -1,6 +1,8 @@
 class MovingEventsController < ApplicationController
   before_action :find_moving_event, except:[:new, :create, :index]
   before_action :find_movee
+
+  
   def new
     @moving_event = MovingEvent.new
   end
@@ -25,7 +27,7 @@ class MovingEventsController < ApplicationController
   def update
     if @moving_event.update(moving_event_params)
       flash[:notice] = "Successfully updated"
-
+      redirect_to movee_moving_event_path(@movee.id, @moving_event.id)
     else
       render 'edit'
     end

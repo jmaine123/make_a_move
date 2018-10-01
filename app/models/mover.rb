@@ -1,8 +1,10 @@
 class Mover < ApplicationRecord
+  before_save {self.email = email.downcase}
   belongs_to :moving_event, optional: true
   has_many :movees, through: :moving_event
   has_one :user, as: :meta, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :requests, dependent: :destroy
   accepts_nested_attributes_for :user
 
   geocoded_by :full_address

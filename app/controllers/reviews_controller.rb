@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :find_mover
+  before_action :authenticate_user!
   def new
     @review = Review.new
   end

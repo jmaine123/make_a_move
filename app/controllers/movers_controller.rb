@@ -1,6 +1,9 @@
 class MoversController < ApplicationController
   before_action :find_mover, only: [:show, :edit, :update, :destroy]
   before_action :find_moving_event, only:[:update]
+  before_action :all_moving_events
+  before_action :find_close_events, only:[:show]
+
 
   def new
     @mover = Mover.new
@@ -68,5 +71,15 @@ class MoversController < ApplicationController
 
   def find_movee
     @movee = Movee.find(params:[:movee_id])
+  end
+
+  def find_close_events
+    @close_events = []
+    MovingEvent.all.each do |event|
+      if @mover.distance_to(event, :mi) < 20
+        @close_events<< event
+      end
+    end
+    return @close_events
   end
 end

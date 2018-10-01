@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
 
+
 devise_for :users do
   get '/logout' => 'devise/sessions#destroy'
 end
 
   resources :movers do
     resources :reviews
+
   end
   resources :movees do
-    resources :moving_events
+    resources :moving_events do
+      resources :requests
+    end
   end
 
   # get '/login' => 'sessions#new'

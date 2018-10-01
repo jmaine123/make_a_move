@@ -1,4 +1,4 @@
-<%= vue_form_for([@movee, @moving_event]) do |f|%>
+<%= form_for([@movee, @moving_event]) do |f|%>
 <%= f.text_field :name, placeholder:'Name' %><br><br>
 <%= f.text_field :description, placeholder: 'Details of the event'%><br><br>
 <%= label_tag 'Old Address: Street, City, State'%><br>
@@ -11,7 +11,7 @@
 <%= f.text_field :new_location_state, placeholder:'State' %><br><br>
 <%= f.date_field :start_date, placeholder: 'Start Date'%><br><br>
 <%= label_tag 'Start Time'%><br>
-<%= f.time_field :start_time, :value => "%H:%M", :ampm => true %><br><br>
+<%= f.time_field :start_time, :value => "%l:%M", :ampm => true %><br><br>
 <%= f.number_field :estimate_hours, placeholder: "Estimated Time for completion"%> Hours <br><br>
 <%= f.text_field :difficulty, placeholder: 'Degree of difficulty'%><br><br>
 <%= f.number_field :amount_of_furniture, placeholder: 'Amount of furniture'%><br><br>
