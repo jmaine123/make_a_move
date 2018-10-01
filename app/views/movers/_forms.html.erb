@@ -1,14 +1,14 @@
 <div class="forms">
   <%=form_for(@mover) do |f|%>
-  <%= f.text_field :first_name, placeholder: 'First Name' %><br><br>
-  <%= f.text_field :last_name, placeholder: 'Last Name' %><br><br>
+  <%= f.text_field :first_name, placeholder: 'First Name', class:'name_input' %>
+  <%= f.text_field :last_name, placeholder: 'Last Name', class:'name_input' %><br>
   <%=f.fields_for(:user_attributes) do |u|%>
-    <%= u.email_field :email, placeholder: 'What is your email?'%><br><br>
-    <%= u.text_field :username, placeholder: 'username'%><br><br>
-    <%= u.password_field :password, placeholder:'Create a password'%><br><br>
+    <%= u.email_field :email, placeholder: 'What is your email?', class:'email_input'%><br>
+    <%= u.text_field :username, placeholder: 'username', class:'username_input'%><br>
+    <%= u.password_field :password, placeholder:'Create a password'%><br>
   <%end%>
-  <%= f.number_field :age, placeholder: 'Age'%><br><br>
-  <%= f.text_field :occupation, placeholder: 'occupation' %><br><br>
+  <%= f.number_field :age, placeholder: 'Age'%><br>
+  <%= f.text_field :occupation, placeholder: 'occupation' %><br>
   <%=label_tag 'Address: Street, City, State'%><br>
   <%= f.text_field :location_street, placeholder:'Street'%>
   <%= f.text_field :location_city, placeholder:'City'%>

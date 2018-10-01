@@ -25,4 +25,8 @@ class MovingEvent < ApplicationRecord
   def event_time
     self.start_time.hour + ':' + self.start_time.min
   end
+
+  def format_time
+    self.start_time.to_s.sub(/^(\d{1,2})(\d{2})$/,'\1:\2')
+  end
 end

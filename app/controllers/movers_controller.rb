@@ -45,6 +45,18 @@ class MoversController < ApplicationController
   end
 
   def destroy
+    @user = User.find_by(meta_id: @mover.id)
+    @user.destroy
+    @mover.requests.each do |request|
+      request.destroy
+    end
+    @mover.reviews.each do |review|
+      review.destroy
+    end
+    @mover.destroy
+
+    redirect_to root_path
+
   end
 
   def index
@@ -81,5 +93,9 @@ class MoversController < ApplicationController
       end
     end
     return @close_events
+  end
+
+  def find_user
+    @user = User.find_by(meta_id)
   end
 end

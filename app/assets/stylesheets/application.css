@@ -15,7 +15,7 @@
  */
 
  html{
-   background-image: linear-gradient(to bottom, rgba(0,0,0,0.7) 10%,rgb(242, 205, 184, .3) 60%), url('https://images.unsplash.com/photo-1479888230021-c24f136d849f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=12eb4731666fa91cdb189dbf094a29ec&auto=format&fit=crop&w=1350&q=80');
+   background-image: linear-gradient(to bottom, rgb(231, 129, 9,.6) 5%,rgb(242, 205, 184, .3) 60%), url('https://images.unsplash.com/photo-1479888230021-c24f136d849f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=12eb4731666fa91cdb189dbf094a29ec&auto=format&fit=crop&w=1350&q=80');
    background-color: rgb(242, 205, 184);
    color:rgb(234, 81, 21);
    font-family: 'Acme', sans-serif;
@@ -30,6 +30,12 @@
    height:100%;
  }
 
+ a{
+   text-decoration: none;
+   color: rgb(238, 25, 25);
+   text-shadow: .5px .5px var(--main);
+ }
+
  .title{
    text-align: center;
    font-size: 2.5em;
@@ -41,6 +47,9 @@
    font-family: 'Luckiest Guy', cursive;
 
  }
+ h4{
+   text-shadow: .2px .2px rgb(242, 205, 184);
+ }
 
  :root{
    --main: rgb(234, 81, 21);
@@ -48,13 +57,55 @@
  }
 
  input{
-   border-radius: 5%;
-   border: 1px solid black;
+   border-radius: 5px;
+   border: 1px solid var(--main);
+ }
+
+  .forms{
+    width:40%;
+    height:auto;
+    background-color:rgba(125, 61, 15, 0.81);
+    text-align: center;
+    border:2px solid white;
+    border-radius: 10%;
+    margin:0 auto;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    line-height: 1.5em;
+  }
+
+ .forms input{
+   font-size: .7em;
+ }
+
+ .event_forms{
+   width:50%;
+   height:auto;
+   background-color:rgba(125, 61, 15, 0.81);
+   border:2px solid white;
+   border-radius: 10%;
+   margin:0 auto;
+   padding:3%;
+   line-height: 1.5em;
+   font-size: 1em;
+   text-align: center;
+ }
+
+ .event_forms input{
+   font-size: 1em;
+ }
+
+ .name_input{
+   width:40%;
+ }
+
+ .email_input{
+   width:70%;
  }
 
  .container{
-   max-width: 90%;
-   margin: 0 auto;
+   max-width: 80%;
+   margin: 5%; auto;
  }
 
  .two_main_btn{
@@ -83,6 +134,7 @@
  .moving_van_img{
    width:100%;
    height:100%;
+   margin-top: 10%;
  }
 
  .moving_van_img img{
@@ -100,6 +152,7 @@
    text-shadow: 1px 1px rgb(234, 81, 21);
    margin-right: 5%;
    text-align: center;
+   font-size: 1.3em;
  }
 
  .stars{
@@ -118,30 +171,27 @@
    height:100%;
  }
 
- .forms{
-   width:40%;
-   height:auto;
-   background-color:rgb(164, 103, 30,.5);
-   text-align: center;
-   border:2px solid white;
-   border-radius: 10%;
-   margin:0 auto;
- }
-
-.forms input{
-  font-size: .7em;
-  width:40%;
-  margin-bottom: 5%;
-}
-
 .profile_container{
   display: grid;
-  grid-template: 1.3fr 1fr/repeat(2,1fr);
+  grid-template: .6fr .7fr/repeat(2,1fr);
   grid-row-gap: 10vh;
   grid-gap: 10vh;
   margin-top: 5%;
 }
-.map{
+
+.profile_pic{
+  width:70%;
+  height:50%;
+}
+
+.profile_pic img{
+  width:100%;
+  height:100%;
+}
+.moving_event_map img{
+  border-radius: 10%;
+  width:60%;
+  height:60%;
   border: 2px solid var(--main);
   border-radius: 10%;
   box-shadow: 5px 5px 8px var(--lightmain);
@@ -150,13 +200,23 @@
 .map img{
   border-radius: 10%;
   width:100%;
-  height:100%;
+  height:90%;
+  border: 2px solid var(--main);
+  border-radius: 10%;
+  box-shadow: 5px 5px 8px var(--lightmain);
 }
 
 .ratings{
   overflow: auto;
   box-shadow: 8px 8px 8px 8px black;
   background-color: rgba(0,0,0,0.5);
+  list-style: none;
+}
+
+.leave_review{
+  text-decoration: none;
+  color:var(--lightmain);
+  text-align: center;
 }
 .profile_search{
   overflow: auto;
@@ -166,6 +226,39 @@
 
 .profile_info{
   box-shadow: 8px 8px 8px 8px black;
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0,0,0,0.4);
   border: 2px solid var(--main);
+  border-radius: 10%;
+  padding:5%;
+}
+
+.moving_event_name{
+  font-size: 1.5em;
+}
+
+.movee_profile{
+  text-shadow: 1px 1px black;
+  display: grid;
+  grid-template: repeat(2, 1fr)/repeat(2,1fr);
+  grid-gap: 10%;
+  grid-row-gap: 10vh;
+}
+
+.movee_profile div{
+  background-color: rgba(0,0,0,0.4);
+  border-radius: 10px;
+  padding: 10%;
+}
+
+.movee_pic{
+  width:50%;
+  height:50%;
+}
+.movee_pic img{
+  width:100%;
+  height:100%;
+}
+
+.movers_list{
+  text-align: center;
 }

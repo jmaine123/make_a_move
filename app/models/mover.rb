@@ -1,5 +1,4 @@
 class Mover < ApplicationRecord
-  before_save {self.email = email.downcase}
   belongs_to :moving_event, optional: true
   has_many :movees, through: :moving_event
   has_one :user, as: :meta, dependent: :destroy

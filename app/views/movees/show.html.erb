@@ -1,14 +1,36 @@
+<div class="movee_profile">
+  <div class="">
+    <h4><%=@movee.first_name%> <%=@movee.last_name%></h4>
+    <h4><%=@movee.email%></h4>
+    <div class="movee_pic">
+      <img src="https://uwclintoncounty.org/wp-content/uploads/2017/12/united-way-headshot-empty.png" alt="">
+    </div>
+    <%=link_to 'Look up Movers', movers_path%><br>
 
-<h4><%=@movee.first_name%> <%=@movee.last_name%></h4>
-<h4><%=@movee.email%></h4>
+    <%=link_to 'Create a moving event', new_movee_moving_event_path(@movee.id)%>
+  </div>
+<div class="movers_list">
+  <h3>List of movers</h3>
+  <%@movee.movers.each do |mover|%>
+    <li><%=mover.full_name%></li>
+    <%end%>
+</div>
+<div class="movee_events">
+  <ol>
+    <% @movee.moving_events.each do |event|%>
+    <li><%=link_to event.name, movee_moving_event_path(@movee.id, event.id), class:'moving_event_name'%> <i><%=link_to 'Destroy', movee_moving_event_path(@movee.id, event.id),  method: :delete, data: { confirm: 'Are you sure?'}, class:'far fa-calendar-edit'%></i></li>
+    <p>Movers needed: <%=event.movers_needed%></p><p>Movers available: <%=event.movers.count%></p>
+    <%event.requests.each do |request|%>
+    Request #<%=request.id%>:<%=request.status%> <br>
+    <%= link_to 'Accept'%> OR <%= link_to 'Reject'%>
+    <%end%>
+    <%end%>
+  </ol>
 
-<%=link_to 'Find a mover', movers_path%>
+</div>
 
-<%=link_to 'Create a moving event', new_movee_moving_event_path(@movee.id)%>
+  <div class="">
 
-<ol>
-  <% @movee.moving_events.each do |event|%>
-  <li><%=link_to event.name, movee_moving_event_path(@movee.id, event.id)%></li>
-  <p>Movers needed: <%=event.movers_needed%></p><p>Movers available: <%=event.movers.count%></p>
-  <%end%>
-</ol>
+  </div>
+
+</div>

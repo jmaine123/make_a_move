@@ -1,27 +1,31 @@
-<h1><%=@moving_event.name%></h1>
+<div class="">
+  <ul>
+    <h1><%=@moving_event.name%></h1>
+    <li><%=@movee.full_name%></li>
+    <li>Starting Day: <%=@moving_event.start_date.strftime("%m/%d/%y")%></li>
+    <li><%=@moving_event.start_time%></li>
+    <li><%=@moving_event.location%></li>
+    <% if current_user.meta_type == 'Movee' && current_user.meta_id == @moving_event.movee_id%>
+    <li><%=@moving_event.new_location%></li>
+    <%end%>
+  </ul>
 
-<li>Starting Day: <%=@moving_event.start_date.strftime("%m/%d/%y")%></li>
-<li><%=@moving_event.start_time%></li>
-<li><%=@moving_event.location%></li>
-<li><%=@moving_event.new_location%></li>
+  <%= link_to 'Edit', edit_movee_moving_event_path(@movee.id, @moving_event.id)%>
+
+  <ol>
+    <h2>The Crew</h2>
+    <% @moving_event.movers.each do |mover|%>
+    <li><%= link_to mover.full_name, mover%>  <%=link_to 'remove'%></li>
+    <%end%>
+  </ol>
+  <div class="moving_event_map">
+    <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@moving_event.latitude},#{@moving_event.longitude}&markers=#{@moving_event.latitude},#{@moving_event.longitude}&markers=#{@moving_event.new_full_address}&zoom=9&size=640x400&key=AIzaSyDs5XjtC_PfhFPV7Yl7RCO185HnKnHqlfY",
+    class: 'img-fluid img-rounded', alt: "#{@moving_event.name} on the map"%>
+
+  </div>
 
 
-<ol>
-  <h2>The Crew</h2>
-  <% @moving_event.movers.each do |mover|%>
-  <li><%= link_to mover.full_name, mover%>  <%=link_to 'remove'%></li>
-  <%end%>
-</ol>
 
-<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@moving_event.latitude},#{@moving_event.longitude}&markers=#{@moving_event.latitude},#{@moving_event.longitude}&zoom=7&size=640x400&key=AIzaSyDs5XjtC_PfhFPV7Yl7RCO185HnKnHqlfY",
-              class: 'img-fluid img-rounded', alt: "#{@moving_event.name} on the map"%>
-
-
-<% form_for(:request, :url => new_movee_moving_event_request_path(@movee.id,@moving_event.id)) do |f| %>
-        <%= f.hidden_field :status, value:'pending' %>
-        <%= f.hidden_field :moving_event_id, value:@moving_event.id  %>
-        <%= f.hidden_field :mover_id, value: current_user.id%>
-        <%= f.submit 'Submit a Request' %>
-<% end %>
-
-<%= link_to "Make a request", new_movee_moving_event_request_path(@movee.id,@moving_event.id, :moving_event_id => @moving_event.id, :mover_id => current_user.meta_id, {:action => :create}, :method => :post) %>
+  <%= link_to "Make a request",{:controller => "requests", :action => "create", :moving_event_id => @moving_event.id, :mover_id => current_user.meta_id, :status => 'Pending'}, :method => :post %><br><br>
+  <%= link_to "Remove Moving Event", movee_moving_event_path(@movee.id, @moving_event.id), method: :delete, data: { confirm: "Are you sure you want to delete #{@moving_event.name} ?"}%>
+</div>

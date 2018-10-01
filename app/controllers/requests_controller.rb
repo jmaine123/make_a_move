@@ -1,5 +1,6 @@
 class RequestsController < ApplicationController
   before_action :find_mover
+  before_action :find_request, only: [:show, :edit, :update, :destroy]
 
   def new
     @request = Request.new
@@ -8,7 +9,7 @@ class RequestsController < ApplicationController
   end
 
   def create
-    @request = Request.new(params)
+    @request = Request.new(params[:request])
     @request.status = 'Pending'
     p "Im in the create: #{params}"
     @request.moving_event_id = params[:moving_event_id]
@@ -21,13 +22,20 @@ class RequestsController < ApplicationController
   def edit
   end
 
+  def update
+    @request.update(request_params)
+    flash[:notice] = "Successfully #{params[:status]} request#{}"
+  end
+
   def index
+    @request = Request.all
   end
 
   def show
   end
 
   def destroy
+    @request.destroy
   end
 
   def index
@@ -36,11 +44,19 @@ class RequestsController < ApplicationController
   private
 
   def request_params
-    params.require(:request).permit(:moving_event_id,:mover_id)
+    params.require(:request).permit(:moving_event_id,:mover_id, :status)
   end
 
   def find_mover
-    @mover = Mover.find_by(params[:id])
+    @mover = Mover.find_by(params[:mover_id])
+  end
+
+  def find_moving_event
+    @moving_event = MovingEvent.find_by(params[:moving_event_id])
+  end
+
+  def find_request
+    @request= Request.find_by(params[:id])
   end
 
 

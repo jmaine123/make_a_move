@@ -2,9 +2,10 @@ class MovingEventsController < ApplicationController
   before_action :find_moving_event, except:[:new, :create, :index]
   before_action :find_movee
 
-  
+
   def new
     @moving_event = MovingEvent.new
+    flash[:notice] = 'Please Sign up to create a moving event '
   end
 
   def create
@@ -34,6 +35,15 @@ class MovingEventsController < ApplicationController
   end
 
   def destroy
+    @moving_event.requests.each do |request|
+      request.destroy
+    end
+    @moving_event.movers.each do |mover|
+      mover.moving_event_id = nil
+    end
+    @moving_event.destroy
+    redirect_to movee_path(@movee.id)
+
   end
 
   def show
@@ -54,7 +64,7 @@ class MovingEventsController < ApplicationController
   end
 
   def find_mover
-    @mover = Mover.all
+    @movers = Mover.find(params[:mover_id])
   end
 
 end
