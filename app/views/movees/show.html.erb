@@ -20,10 +20,10 @@
     <% @movee.moving_events.each do |event|%>
     <li><%=link_to event.name, movee_moving_event_path(@movee.id, event.id), class:'moving_event_name'%> <i><%=link_to 'Destroy', movee_moving_event_path(@movee.id, event.id),  method: :delete, data: { confirm: 'Are you sure?'}, class:'far fa-calendar-edit'%></i></li>
     <p>Movers needed: <%=event.movers_needed%></p><p>Movers available: <%=event.movers.count%></p>
-    <%event.requests.each do |request|%>
-    Request #<%=request.id%>:<%=request.status%> <br>
-    <%= link_to 'Accept'%> OR <%= link_to 'Reject'%>
-    <%end%>
+      <%event.requests.each do |request|%>
+      Request #<%=request.id%>:<%=request.status%> <br>
+      <%= link_to 'Accept', movee_moving_event_request_path(@movee.id, event.id, request), :id => current_user.meta_id, :moving_event => request.moving_event.id, :mover_id => request.mover.id, :status => 'Accepted', method: :patch %> OR <%= link_to 'Reject'%>
+      <%end%>
     <%end%>
   </ol>
 

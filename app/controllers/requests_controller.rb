@@ -25,6 +25,7 @@ class RequestsController < ApplicationController
   def update
     @request.update(request_params)
     flash[:notice] = "Successfully #{params[:status]} request#{}"
+    p 'hey'
   end
 
   def index
@@ -44,7 +45,7 @@ class RequestsController < ApplicationController
   private
 
   def request_params
-    params.require(:request).permit(:moving_event_id,:mover_id, :status)
+    params.require(:request).permit(:moving_event_id,:mover_id, :status, :id)
   end
 
   def find_mover

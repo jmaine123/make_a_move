@@ -1,6 +1,8 @@
 <div class="event_forms">
   <%= form_for([@movee, @moving_event]) do |f|%>
+  <%=label_tag 'Event Name'%><br>
   <%= f.text_field :name, placeholder:'Name of your Event', class:'name_input'%><br>
+  <%= label_tag 'Event description'%><br>
   <%= f.text_area :description, placeholder: 'Details of the event'%><br>
   <%= label_tag 'Old Address: Street, City, State'%><br>
   <%= f.text_field :old_location_street, placeholder:'Street' %>
