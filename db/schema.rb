@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_29_000407) do
+ActiveRecord::Schema.define(version: 2018_10_02_030151) do
 
   create_table "movees", force: :cascade do |t|
     t.string "first_name"
@@ -73,7 +73,18 @@ ActiveRecord::Schema.define(version: 2018_09_29_000407) do
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
+    t.integer "price"
     t.index ["movee_id"], name: "index_moving_events_on_movee_id"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.string "status"
+    t.integer "mover_id"
+    t.integer "moving_event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mover_id"], name: "index_requests_on_mover_id"
+    t.index ["moving_event_id"], name: "index_requests_on_moving_event_id"
   end
 
   create_table "reviews", force: :cascade do |t|

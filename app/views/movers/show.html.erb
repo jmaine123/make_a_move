@@ -1,30 +1,68 @@
 
-
-<h1><%=@mover.full_name%></h1>
-
-<p><%= @mover.email%></p>
-<p><%= @mover.location%></p>
-<p><%= @mover.age%></p>
-<% if !@mover.rating.nil?%>
-<h4><%= @movee.rating%></h4>
-<% end%>
-
-<%= form_for @mover, :url => {:controller => 'movers', :action => "update"} do %>
-<%=collection_select(:mover, :moving_event_id, MovingEvent.all, :id, :name)%>
-<%=submit_tag 'Help move'%>
-<% end%>
-
-<h3>Moving Events available</h3>
-
-<% MovingEvent.all.each do |event|%>
-<li><%= link_to event.name, movee_moving_event_path(event.movee_id, event.id)%><br> <%=event.start_time%></li>
-<%end%>
-<br><br>
-<%= link_to 'Make a Review', new_mover_review_path(@mover.id)%>
+<div class="profile_container">
+<div class="profile_info">
 
 
-<ol>
-  <%@mover.reviews. each do |review|%>
+  <h1><%=@mover.full_name%></h1>
+
+  <p><%= @mover.user.email%></p>
+  <p><%= @mover.location%></p>
+  <p>Age: <%= @mover.age%></p>
+  <div class="profile_pic">
+    <img src="https://uwclintoncounty.org/wp-content/uploads/2017/12/united-way-headshot-empty.png" alt="">
+  </div>
+  <%=link_to "Delete Account", mover_path(@mover.id), method: :delete, data: { confirm: "Are you sure you want to delete your account #{@mover.full_name}?"}%>
+</div>
+
+<div class="map">
+  <%event_params = ''%>
+  <%marker =('A'..'Z').to_a %>
+  <%index = 0 %>
+  <% @close_events.each do |event|%>
+  <% event_params<< "&markers=color:green%7Clabel:#{marker[index]}%7C#{event.latitude},#{event.longitude}" %>
+  <% index == 26? index = 0 : index += 1 %>
+  <%end%>
+  <% if @mover.moving_event != nil %>
+  <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@mover.latitude},#{@mover.longitude}&markers=#{@mover.latitude},#{@mover.longitude}#{event_params}&11&size=640x400&key=AIzaSyDs5XjtC_PfhFPV7Yl7RCO185HnKnHqlfY",
+  class: 'img-fluid img-rounded', alt: "#{@mover.full_name} on the map"%>
+  <%else%>
+  <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@mover.latitude},#{@mover.longitude}&markers=#{@mover.latitude},#{@mover.longitude}&11&size=640x400&key=AIzaSyDs5XjtC_PfhFPV7Yl7RCO185HnKnHqlfY",
+  class: 'img-fluid img-rounded', alt: "#{@mover.full_name} on the map"%>
+  <%end%>
+
+  <%= form_for @mover, :url => {:controller => 'movers', :action => "update"} do %>
+  <%=collection_select(:mover, :moving_event_id, @close_events, :id, :name)%><br>
+  <%=submit_tag 'Help move'%>
+  <% end%>
+
+  <%=form_tag%>
+  <%= number_field_tag :zoom,10,within: 0..15 %>
+  <%= submit_tag 'Zoom'%>
+</div>
+
+<div class="profile_search">
+  <h3>Current Moving Event</h3>
+  <%if !@mover.moving_event.nil?%>
+  <%=link_to "#{@mover.moving_event.name}", movee_moving_event_path(@mover.moving_event.movee_id, @mover.moving_event.id)%>
+  <%end%>
+
+  <h3>Moving Events available</h3>
+  <ol type="A">
+    <% @close_events.each do |event|%>
+    <li><%= link_to event.name, movee_moving_event_path(event.movee_id, event.id)%><br> Start Time: <%=event.start_time%><br> <%=event.location%></li>
+
+    <br><br>
+    <%end%>
+
+  </ol>
+</div>
+
+
+
+
+  <ol class="ratings">
+    <h2>Reviews and Ratings</h2>
+    <%@mover.reviews. each do |review|%>
     <%if review.comment != ''%>
     <li><h3><%= review.comment%></h3>
       Rating:
@@ -39,14 +77,13 @@
 
     </li>
     <%end%>
-  <%end%>
-</ol>
-
-<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@mover.latitude},#{@mover.longitude}&markers=#{@mover.latitude},#{@mover.longitude}&zoom=15&size=640x400&key=AIzaSyDs5XjtC_PfhFPV7Yl7RCO185HnKnHqlfY",
-              class: 'img-fluid img-rounded', alt: "#{@mover.full_name} on the map"%>
+    <%end%>
+    <%= link_to 'Leave a Review', new_mover_review_path(@mover.id), class:'leave_review'%>
+  </ol>
 
 
 
-<% if flash[:notice] %>
+  <% if flash[:notice] %>
   <div class="notice"><%= flash[:notice] %></div>
-<% end %>
+  <% end %>
+</div>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: MyString
+  mover: one
+  moving_event: one
+
+two:
+  status: MyString
+  mover: two
+  moving_event: two

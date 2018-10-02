@@ -1,2 +1,6 @@
+<% if current_user.meta_type == 'Movee'%>
 <h1>Describe your move</h1>
 <%= render 'forms'%>
+<% else%>
+<%=flash[:notice]%>
+<%end%>

@@ -1,6 +1,9 @@
 class MoversController < ApplicationController
   before_action :find_mover, only: [:show, :edit, :update, :destroy]
   before_action :find_moving_event, only:[:update]
+  before_action :all_moving_events
+  before_action :find_close_events, only:[:show]
+
 
   def new
     @mover = Mover.new
@@ -25,8 +28,9 @@ class MoversController < ApplicationController
 
   def update
     if @moving_event.movers.count <= @moving_event.movers_needed
-        @mover.moving_event_id = @moving_event.id
+        p @mover.moving_event_id = @moving_event.id
         @mover.movee_id = @moving_event.movee_id
+        # @moving_event != nil ? @mover.movee_id = @moving_event.movee_id : @mover.movee_id = nil
         if @mover.update(mover_params)
           flash[:notice] = "Successfully updated"
           redirect_to movee_moving_event_path(@mover.movee_id, @mover.moving_event_id)
@@ -42,10 +46,29 @@ class MoversController < ApplicationController
   end
 
   def destroy
+    @user = User.find_by(meta_id: @mover.id)
+    @user.destroy
+    @mover.requests.each do |request|
+      request.destroy
+    end
+    @mover.reviews.each do |review|
+      review.destroy
+    end
+    @mover.destroy
+
+    redirect_to root_path
+
   end
 
   def index
     @movers = Mover.all
+  end
+
+  def remove_mover
+    @mover = Mover.find(params[:id])
+    @mover.moving_event_id = nil
+    @mover.movee_id = nil
+    @mover.save
   end
 
   private
@@ -63,10 +86,26 @@ class MoversController < ApplicationController
   end
 
   def find_moving_event
-    @moving_event = MovingEvent.find_by(params[:moving_event_id])
+    @moving_event = MovingEvent.find(params[:id])
   end
 
   def find_movee
     @movee = Movee.find(params:[:movee_id])
   end
+
+  def find_close_events
+    @close_events = []
+    MovingEvent.all.each do |event|
+      if @mover.distance_to(event, :mi) < 20
+        @close_events<< event
+      end
+    end
+    return @close_events
+  end
+
+  def find_user
+    @user = User.find_by(meta_id)
+  end
+
+
 end

@@ -1,19 +1,19 @@
 <div class="forms">
   <%=form_for(@movee) do |f|%><br>
-  <%= f.text_field :first_name, placeholder: 'First Name' %>
-  <%= f.text_field :last_name, placeholder: 'Last Name' %><br>
+  <%= f.text_field :first_name, placeholder: 'First Name' ,require: true %>
+  <%= f.text_field :last_name, placeholder: 'Last Name' ,require: true %><br>
   <%=f.fields_for(:user_attributes) do |u|%>
-    <%= u.email_field :email, placeholder: 'What is your email?'%><br><br>
-    <%= u.text_field :username, placeholder: 'username'%><br><br>
-    <%= u.password_field :password, placeholder:'Create a password'%><br><br>
+    <%= u.email_field :email, placeholder: 'What is your email?',require: true %><br>
+    <%= u.text_field :username, placeholder: 'username', require: true %><br>
+    <%= u.password_field :password, placeholder:'Create a password', require: true %><br>
   <%end%>
-  <%= f.number_field :age, placeholder: 'Age'%><br>
+  <%= f.number_field :age, placeholder: 'Age', require:true %><br>
   <%=label_tag 'location: Street, City, State'%><br>
-  <%= f.text_field :location_street, placeholder: 'Street'%>
-  <%= f.text_field :location_city, placeholder: 'City'%>
-  <%= f.text_field :location_state, placeholder: 'State'%> <br>
+  <%= f.text_field :location_street, placeholder: 'Street', require: true%>
+  <%= f.text_field :location_city, placeholder: 'City', require: true %>
+  <%= f.text_field :location_state, placeholder: 'State' %> <br>
   <%=label_tag 'Phone Number'%><br>
-  <%=f.telephone_field(:phone_number, placeholder:'Phone Number')%><br>
+  <%=f.telephone_field(:phone_number, placeholder:'Phone Number') %><br>
   <%= f.submit 'Create', class:'submit-btns'%>
   <%end%>
 

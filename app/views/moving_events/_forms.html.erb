@@ -1,26 +1,32 @@
-<%= vue_form_for([@movee, @moving_event]) do |f|%>
-<%= f.text_field :name, placeholder:'Name' %><br><br>
-<%= f.text_field :description, placeholder: 'Details of the event'%><br><br>
-<%= label_tag 'Old Address: Street, City, State'%><br>
-<%= f.text_field :old_location_street, placeholder:'Street' %><br><br>
-<%= f.text_field :old_location_city, placeholder:'City' %><br><br>
-<%= f.text_field :old_location_state, placeholder:'State' %><br><br>
-<%= label_tag 'New Address: Street, City, State'%><br>
-<%= f.text_field :new_location_street, placeholder:'Street' %><br><br>
-<%= f.text_field :new_location_city, placeholder:'City' %><br><br>
-<%= f.text_field :new_location_state, placeholder:'State' %><br><br>
-<%= f.date_field :start_date, placeholder: 'Start Date'%><br><br>
-<%= label_tag 'Start Time'%><br>
-<%= f.time_field :start_time, :value => "%H:%M", :ampm => true %><br><br>
-<%= f.number_field :estimate_hours, placeholder: "Estimated Time for completion"%> Hours <br><br>
-<%= f.text_field :difficulty, placeholder: 'Degree of difficulty'%><br><br>
-<%= f.number_field :amount_of_furniture, placeholder: 'Amount of furniture'%><br><br>
-<%= f.number_field :movers_needed, placeholder: 'Amount of movers needed'%><br><br>
-<%= label_tag 'Payment per hour'%>
-<%= f.number_field :payment_per_hour, placeholder:"Payment per hour"%> dollars per hour
-<%= label_tag 'Giveaways'%>
-<%= f.check_box :giveaways %>
+<div class="event_forms">
+  <%= form_for([@movee, @moving_event]) do |f|%>
+  <%=label_tag 'Event Name'%><br>
+  <%= f.text_field :name, placeholder:'Name of your Event', class:'name_input'%><br>
+  <%= label_tag 'Event description'%><br>
+  <%= f.text_area :description, placeholder: 'Details of the event'%><br>
+  <%= label_tag 'Old Address: Street, City, State'%><br>
+  <%= f.text_field :old_location_street, placeholder:'Street' %>
+  <%= f.text_field :old_location_city, placeholder:'City' %>
+  <%= f.text_field :old_location_state, placeholder:'State' %><br>
+  <%= label_tag 'New Address: Street, City, State'%><br>
+  <%= f.text_field :new_location_street, placeholder:'Street' %>
+  <%= f.text_field :new_location_city, placeholder:'City' %>
+  <%= f.text_field :new_location_state, placeholder:'State' %><br>
+  <%= label_tag 'Start Date'%><br>
+  <%= f.date_field :start_date, placeholder: 'Start Date'%><br>
+  <%= label_tag 'Start Time'%><br>
+  <%= f.time_field :start_time, :value => "%l:%M%P", :ampm => true %><br>
+  <%= f.number_field :estimate_hours, placeholder: "Estimated Time Needed"%> Hours <br>
+  <%= f.text_field :difficulty, placeholder: 'Degree of difficulty'%><br>
+  <%= f.number_field :amount_of_furniture, placeholder: 'Amount of furniture'%><br>
+  <%= f.number_field :movers_needed, placeholder: 'Amount of movers needed'%><br>
+  <%= label_tag 'Payment per hour'%><br>
+  <%= f.number_field :payment_per_hour, placeholder:"Payment per hour"%><br>
+  <%= label_tag 'Giveaways'%>
+  <%= f.check_box :giveaways %><br>
 
-<%= f.submit "Create" %>
+  <%= f.submit "Create" %>
 
-<%end%>
+  <%end%>
+
+</div>

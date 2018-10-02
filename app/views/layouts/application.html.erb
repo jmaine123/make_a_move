@@ -9,10 +9,15 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'hello_vue' %>
     <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
   </head>
 
   <body>
-    <%= render 'layouts/header'%>
-    <%= yield %>
+    <div class="container">
+      <%= render 'layouts/header'%>
+      <br>
+      <br>
+      <%= yield %>
+    </div>
   </body>
 </html>

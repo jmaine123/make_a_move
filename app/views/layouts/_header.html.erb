@@ -1,9 +1,17 @@
 <div class="navbar">
-  <%= link_to 'Home', root_path%>
-  <%= link_to 'About Us'%>
+    <%= link_to 'Home', root_path%>
+    <%= link_to 'About Us'%>
   <% if user_signed_in? %>
-  <%= current_user%>
-  <%= link_to 'Logout', destroy_user_session_path, :method => :delete%>
+    <%= link_to 'Logout', destroy_user_session_path, :method => :delete%>
+
+      <% if current_user.meta_type == "Mover"%>
+      <%= link_to "Welcome, #{ current_user.username}",  mover_path(current_user.meta_id), class:"accountbtn"%>
+      <%else%>
+      <%= link_to "Welcome, #{ current_user.username}",  movee_path(current_user.meta_id), class:"accountbtn"%>
+
+      <%end%>
+
+
   <%else%>
   <%= link_to 'Login', new_user_session_path%>
   <%end%>
