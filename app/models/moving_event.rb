@@ -1,5 +1,5 @@
 class MovingEvent < ApplicationRecord
-  has_many :movers
+  has_many :movers, dependent: :nullify
   has_one :movee
   has_many :requests, dependent: :destroy
 

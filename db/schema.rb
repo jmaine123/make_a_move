@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_30_211235) do
+ActiveRecord::Schema.define(version: 2018_10_02_030151) do
 
   create_table "movees", force: :cascade do |t|
     t.string "first_name"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2018_09_30_211235) do
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
+    t.integer "price"
     t.index ["movee_id"], name: "index_moving_events_on_movee_id"
   end
 

@@ -11,9 +11,9 @@
   <%=label_tag 'location: Street, City, State'%><br>
   <%= f.text_field :location_street, placeholder: 'Street', require: true%>
   <%= f.text_field :location_city, placeholder: 'City', require: true %>
-  <%= f.text_field :location_state, placeholder: 'State'require: true %> <br>
+  <%= f.text_field :location_state, placeholder: 'State' %> <br>
   <%=label_tag 'Phone Number'%><br>
-  <%=f.telephone_field(:phone_number, placeholder:'Phone Number'), require: true %><br>
+  <%=f.telephone_field(:phone_number, placeholder:'Phone Number') %><br>
   <%= f.submit 'Create', class:'submit-btns'%>
   <%end%>
 

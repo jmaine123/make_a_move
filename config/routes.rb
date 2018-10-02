@@ -6,9 +6,13 @@ devise_for :users do
 end
 
   resources :movers do
+    collection do
+      # patch '/movers/:mover_id', to: 'movers#remove_mover'
+      get 'remove_mover'
+    end
     resources :reviews
-
   end
+
   resources :movees do
     resources :moving_events do
       resources :requests

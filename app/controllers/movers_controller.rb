@@ -28,8 +28,9 @@ class MoversController < ApplicationController
 
   def update
     if @moving_event.movers.count <= @moving_event.movers_needed
-        @mover.moving_event_id = @moving_event.id
+        p @mover.moving_event_id = @moving_event.id
         @mover.movee_id = @moving_event.movee_id
+        # @moving_event != nil ? @mover.movee_id = @moving_event.movee_id : @mover.movee_id = nil
         if @mover.update(mover_params)
           flash[:notice] = "Successfully updated"
           redirect_to movee_moving_event_path(@mover.movee_id, @mover.moving_event_id)
@@ -63,6 +64,13 @@ class MoversController < ApplicationController
     @movers = Mover.all
   end
 
+  def remove_mover
+    @mover = Mover.find(params[:id])
+    @mover.moving_event_id = nil
+    @mover.movee_id = nil
+    @mover.save
+  end
+
   private
 
   def mover_params
@@ -78,7 +86,7 @@ class MoversController < ApplicationController
   end
 
   def find_moving_event
-    @moving_event = MovingEvent.find_by(params[:moving_event_id])
+    @moving_event = MovingEvent.find(params[:id])
   end
 
   def find_movee
@@ -98,4 +106,6 @@ class MoversController < ApplicationController
   def find_user
     @user = User.find_by(meta_id)
   end
+
+
 end

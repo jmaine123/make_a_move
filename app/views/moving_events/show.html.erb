@@ -8,6 +8,7 @@
     <% if current_user.meta_type == 'Movee' && current_user.meta_id == @moving_event.movee_id%>
     <li><%=@moving_event.new_location%></li>
     <%end%>
+    <li><%=@moving_event.payment_per_hour%> dollars per hour</li>
   </ul>
 
   <%= link_to 'Edit', edit_movee_moving_event_path(@movee.id, @moving_event.id)%>
@@ -15,7 +16,10 @@
   <ol>
     <h2>The Crew</h2>
     <% @moving_event.movers.each do |mover|%>
-    <li><%= link_to mover.full_name, mover%>  <%=link_to 'remove'%></li>
+    <li><%= link_to mover.full_name, mover%>
+      <% if current_user.meta_type == 'Movee' && current_user.meta_id == @moving_event.movee_id%>
+    <%=link_to 'remove', controller:'movers', action:'remove_mover' , :id => mover.id, :moving_event_id => nil, :movee_id => nil, :method => :get %></li>
+      <%end%>
     <%end%>
   </ol>
   <div class="moving_event_map">

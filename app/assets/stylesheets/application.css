@@ -15,13 +15,14 @@
  */
 
  html{
-   background-image: linear-gradient(to bottom, rgb(231, 129, 9,.6) 5%,rgb(242, 205, 184, .3) 60%), url('https://images.unsplash.com/photo-1479888230021-c24f136d849f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=12eb4731666fa91cdb189dbf094a29ec&auto=format&fit=crop&w=1350&q=80');
+   background-image: linear-gradient(to top left, rgb(255, 148, 50,.3) 30%,rgb(0, 0, 0, .3) 70%), url('https://images.unsplash.com/photo-1479888230021-c24f136d849f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=12eb4731666fa91cdb189dbf094a29ec&auto=format&fit=crop&w=1350&q=80');
    background-color: rgb(242, 205, 184);
-   color:rgb(234, 81, 21);
+   color:rgb(241, 81, 18);
    font-family: 'Acme', sans-serif;
    font-size: 1.5em;
    /* line-height: 1em; */
    min-height:100%;
+   z-index:1
 
  }
  body{
@@ -36,17 +37,23 @@
    text-shadow: .5px .5px var(--main);
  }
 
+ a:hover{
+   font-size: 1.3em;
+ }
+
  .title{
    text-align: center;
-   font-size: 2.5em;
+   font-size: 3em;
+   text-shadow: 3px 3px black;
  }
 
  h1{
    text-shadow: 3px 3px rgb(242, 205, 184);
    letter-spacing: .1vw;
    font-family: 'Luckiest Guy', cursive;
-
+   z-index: 2;
  }
+
  h4{
    text-shadow: .2px .2px rgb(242, 205, 184);
  }
@@ -75,7 +82,7 @@
   }
 
  .forms input{
-   font-size: .7em;
+   font-size: 1em;
  }
 
  .event_forms{
@@ -104,8 +111,8 @@
  }
 
  .container{
-   max-width: 80%;
-   margin: 5%; auto;
+   max-width: 75%;
+   margin: 9%; auto;
  }
 
  .two_main_btn{
@@ -143,7 +150,7 @@
  }
 
  .navbar{
-   font-size: .8em;
+   font-size: 1em;
  }
 
  .navbar a{
@@ -226,7 +233,7 @@
 
 .profile_info{
   box-shadow: 8px 8px 8px 8px black;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0,0,0,0.7);
   border: 2px solid var(--main);
   border-radius: 10%;
   padding:5%;
@@ -245,8 +252,9 @@
 }
 
 .movee_profile div{
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0,0,0,0.7);
   border-radius: 10px;
+  border: 1px 1px solid;
   padding: 10%;
 }
 
