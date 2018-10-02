@@ -15,8 +15,8 @@
  */
 
  html{
-   background-image: linear-gradient(to top left, rgb(255, 148, 50,.3) 30%,rgb(0, 0, 0, .3) 70%), url('https://images.unsplash.com/photo-1479888230021-c24f136d849f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=12eb4731666fa91cdb189dbf094a29ec&auto=format&fit=crop&w=1350&q=80');
-   background-color: rgb(242, 205, 184);
+   background-image: linear-gradient(to top left, rgba(255, 148, 50,.3) 30%,rgba(0, 0, 0, .3) 70%), url('https://images.unsplash.com/photo-1479888230021-c24f136d849f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=12eb4731666fa91cdb189dbf094a29ec&auto=format&fit=crop&w=1350&q=80');
+   background-color: rgba(242, 205, 184);
    color:rgb(241, 81, 18);
    font-family: 'Acme', sans-serif;
    font-size: 1.5em;
@@ -33,7 +33,7 @@
 
  a{
    text-decoration: none;
-   color: rgb(238, 25, 25);
+   color: rgba(238, 25, 25);
    text-shadow: .5px .5px var(--main);
  }
 
@@ -59,8 +59,8 @@
  }
 
  :root{
-   --main: rgb(234, 81, 21);
-   --lightmain: rgb(242, 205, 184);
+   --main: rgba(234, 81, 21);
+   --lightmain: rgba(242, 205, 184);
  }
 
  input{
@@ -112,7 +112,7 @@
 
  .container{
    max-width: 75%;
-   margin: 9%; auto;
+   margin: 9% auto;
  }
 
  .two_main_btn{
