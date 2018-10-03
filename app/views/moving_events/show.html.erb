@@ -1,35 +1,69 @@
-<div class="">
-  <ul>
-    <h1><%=@moving_event.name%></h1>
-    <li><%=@movee.full_name%></li>
-    <li>Starting Day: <%=@moving_event.start_date.strftime("%m/%d/%y")%></li>
-    <li><%=@moving_event.start_time%></li>
-    <li><%=@moving_event.location%></li>
-    <% if current_user.meta_type == 'Movee' && current_user.meta_id == @moving_event.movee_id%>
-    <li><%=@moving_event.new_location%></li>
-    <%end%>
-    <li><%=@moving_event.payment_per_hour%> dollars per hour</li>
-  </ul>
-
-  <%= link_to 'Edit', edit_movee_moving_event_path(@movee.id, @moving_event.id)%>
-
-  <ol>
-    <h2>The Crew</h2>
-    <% @moving_event.movers.each do |mover|%>
-    <li><%= link_to mover.full_name, mover%>
-      <% if current_user.meta_type == 'Movee' && current_user.meta_id == @moving_event.movee_id%>
-    <%=link_to 'remove', controller:'movers', action:'remove_mover' , :id => mover.id, :moving_event_id => nil, :movee_id => nil, :method => :get %></li>
+<div class="profile_container">
+  <div class="event_info">
+    <ul id = "event_description">
+      <h1><%=@moving_event.name%></h1>
+      <% if current_user.meta_type == "Mover" && current_user.meta.moving_event_id == @moving_event.id%>
+      <li>Planner: <%=link_to @movee.full_name, movee_path(@movee.id)%></li>
+      <%else%>
+      <li>Planner: <%= @movee.full_name%></li>
       <%end%>
-    <%end%>
-  </ol>
-  <div class="moving_event_map">
-    <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@moving_event.latitude},#{@moving_event.longitude}&markers=#{@moving_event.latitude},#{@moving_event.longitude}&markers=#{@moving_event.new_full_address}&zoom=9&size=640x400&key=AIzaSyDs5XjtC_PfhFPV7Yl7RCO185HnKnHqlfY",
+      <li>Starting Day: <%=@moving_event.start_date.strftime("%m/%d/%y")%></li>
+      <li>Start Time: <%=@moving_event.start_time%></li>
+      <li>From: <br><%=@moving_event.location%></li>
+      <% if current_user.meta_type == 'Movee' && current_user.meta_id == @moving_event.movee_id%>
+      <li>To: <br><%=@moving_event.new_location%></li>
+      <%end%>
+      <li><%=@moving_event.payment_per_hour%> dollars per hour</li>
+    </ul>
+    <div class="event_choices">
+      <%= link_to "Make a request",{:controller => "requests", :action => "create", :moving_event_id => @moving_event.id, :mover_id => current_user.meta_id, :status => 'Pending'}, :method => :post %><br>
+      <% if current_user.meta_type == 'Movee' && current_user.meta_id == @moving_event.movee_id%>
+      <%= link_to 'Edit', edit_movee_moving_event_path(@movee.id, @moving_event.id)%><br>
+      <%= link_to "Remove Moving Event", movee_moving_event_path(@movee.id, @moving_event.id), method: :delete, data: { confirm: "Are you sure you want to delete #{@moving_event.name} ?"}%><br>
+      <%= link_to "Reward points to movers", controller:'moving_events', action:'complete_event', :id => @moving_event.id, :moving_event_id => @moving_event.id, :method => :get %><br>
+      <%= link_to "Add Give aways", new_movee_moving_event_giveaway_path(@movee.id, @moving_event.id)%>
+      <%end%>
+
+    </div>
+  </div>
+  <div class="map">
+    <% if current_user.meta_type == "Movee" && current_user.meta_id == @moving_event.movee_id %>
+    <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@moving_event.latitude},#{@moving_event.longitude}&markers=color:green%7Clabel:A%7C#{@moving_event.latitude},#{@moving_event.longitude}&markers=color:blue%7Clabel:B%7C#{@moving_event.new_full_address}&zoom=11&size=640x400&key=AIzaSyDs5XjtC_PfhFPV7Yl7RCO185HnKnHqlfY",
     class: 'img-fluid img-rounded', alt: "#{@moving_event.name} on the map"%>
+    <%elsif current_user.meta_type == "Mover" && current_user.meta.moving_event_id == @moving_event.id %>
+    <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@moving_event.latitude},#{@moving_event.longitude}&markers=color:green%7Clabel:A%7C#{@moving_event.latitude},#{@moving_event.longitude}&markers=color:blue%7Clabel:B%7C#{@moving_event.new_full_address}&zoom=11&size=640x400&key=AIzaSyDs5XjtC_PfhFPV7Yl7RCO185HnKnHqlfY",
+    class: 'img-fluid img-rounded', alt: "#{@moving_event.name} on the map"%>
+    <% else %>
+    <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@moving_event.latitude},#{@moving_event.longitude}&markers=color:green%7Clabel:A%7C#{@moving_event.latitude},#{@moving_event.longitude}&zoom=9&size=640x400&key=AIzaSyDs5XjtC_PfhFPV7Yl7RCO185HnKnHqlfY",
+    class: 'img-fluid img-rounded', alt: "#{@moving_event.name} on the map"%>
+    <%end%>
+  </div>
+  <div class="ratings">
+    <ol>
+      <h2>The Crew</h2>
+      <% @moving_event.movers.each do |mover|%>
+      <li><%= link_to mover.full_name, mover%>
+        <% if current_user.meta_type == 'Movee' && current_user.meta_id == @moving_event.movee_id%>
+        <%=link_to 'remove', controller:'movers', action:'remove_mover' , :id => mover.id, :moving_event_id => nil, :movee_id => nil, :method => :get %></li>
+        <%end%>
+        <%end%>
+      </ol>
+  </div>
+
+  <div class="ratings">
+    <h2>Incentives</h2>
+
+    <ol>
+      <% @moving_event.giveaways.each do |giveaway|%>
+        <li><%=giveaway.item_name%> <br>
+          Condition: <%=giveaway.condition%><br>
+          <%= link_to "Remove Item", movee_moving_event_giveaway_path(@movee.id, @moving_event.id), method: :delete, data: { confirm: "Are you sure you want to delete #{giveaway.item_name} ?"}%>
+         </li>
+      <%end%>
+    </ol>
 
   </div>
 
 
 
-  <%= link_to "Make a request",{:controller => "requests", :action => "create", :moving_event_id => @moving_event.id, :mover_id => current_user.meta_id, :status => 'Pending'}, :method => :post %><br><br>
-  <%= link_to "Remove Moving Event", movee_moving_event_path(@movee.id, @moving_event.id), method: :delete, data: { confirm: "Are you sure you want to delete #{@moving_event.name} ?"}%>
 </div>

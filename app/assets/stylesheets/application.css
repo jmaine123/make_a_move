@@ -22,8 +22,8 @@
    font-size: 1.5em;
    /* line-height: 1em; */
    min-height:100%;
-   z-index:1
-
+   z-index:-1;
+   filter: brightness(100%);
  }
  body{
    padding:0;
@@ -31,20 +31,34 @@
    height:100%;
  }
 
- a{
+ .main-container{
+   width:90%;
+   margin: 10% auto;
+ }
+
+a{
    text-decoration: none;
    color: rgb(238, 25, 25);
    text-shadow: .5px .5px var(--main);
  }
 
- a:hover{
-   font-size: 1.3em;
- }
+a:hover{
+  color:white;
+}
 
  .title{
    text-align: center;
-   font-size: 3em;
-   text-shadow: 3px 3px black;
+   font-size: 4.3em;
+   text-shadow: 3px 3px var(--lightmain);
+ }
+
+ .flash{
+   background-color: rgba(0,0,0,.7);
+   text-shadow: 1px 1px red;
+   color: white;
+   width:70%;
+   padding:10%;
+   margin: 0 auto;
  }
 
  h1{
@@ -52,9 +66,10 @@
    letter-spacing: .1vw;
    font-family: 'Luckiest Guy', cursive;
    z-index: 2;
+   text-align: center;
  }
 
- h4{
+ h4, h3{
    text-shadow: .2px .2px rgb(242, 205, 184);
  }
 
@@ -66,6 +81,23 @@
  input{
    border-radius: 5px;
    border: 1px solid var(--main);
+ }
+ .navbar{
+   font-size: 1em;
+ }
+
+ .nav-icon:hover{
+   font-size: 1.5em;
+   color: red;
+ }
+
+ .navbar a{
+   text-decoration: none;
+   color: white;
+   text-shadow: 1px 1px rgb(234, 81, 21);
+   margin-right: 5%;
+   text-align: center;
+   font-size: 1.3em;
  }
 
   .forms{
@@ -110,8 +142,12 @@
    width:70%;
  }
 
+ .dropdown{
+   font-size: 1.5em;
+ }
+
  .container{
-   max-width: 75%;
+   max-width: 85%;
    margin: 9% auto;
  }
 
@@ -125,8 +161,8 @@
  .main_choices{
    background-color: rgb(234, 81, 21);
    padding: 3%;
-   border: 1px solid white;
-   border-radius: 10%;
+   border: 1px solid;
+   border-radius: 10px;
    width:40%;
    margin-bottom: 5%;
    margin: 0 auto;
@@ -139,28 +175,23 @@
  }
 
  .moving_van_img{
-   width:100%;
-   height:100%;
+   width:60%;
+   height:50%;
    margin-top: 10%;
+   position: absolute;
+   /* transition: all 7s ease-in-out;
+   transform: translate(-1050px,0); */
  }
 
  .moving_van_img img{
-   height:40%;
-   width:50%;
+   height:100%;
+   width:100%;
+   top: 45%;
+   left: 44%;
+   z-index: 2;
  }
 
- .navbar{
-   font-size: 1em;
- }
 
- .navbar a{
-   text-decoration: none;
-   color: white;
-   text-shadow: 1px 1px rgb(234, 81, 21);
-   margin-right: 5%;
-   text-align: center;
-   font-size: 1.3em;
- }
 
  .stars{
    width:60%;
@@ -188,7 +219,8 @@
 
 .profile_pic{
   width:70%;
-  height:50%;
+  height:100%;
+  margin: 0 auto;
 }
 
 .profile_pic img{
@@ -218,6 +250,8 @@
   box-shadow: 8px 8px 8px 8px black;
   background-color: rgba(0,0,0,0.5);
   list-style: none;
+  text-shadow: .1px .1px white;
+  font-size: 1.2em;
 }
 
 .leave_review{
@@ -237,6 +271,26 @@
   border: 2px solid var(--main);
   border-radius: 10%;
   padding:5%;
+  display: grid;
+  grid-template: .5fr 1.5fr 1fr/100%;
+  text-align: center;
+
+}
+
+.event_info{
+  box-shadow: 8px 8px 8px 8px black;
+  background-color: rgba(0,0,0,0.7);
+  border: 2px solid var(--main);
+  border-radius: 10%;
+  padding:5%;
+  display: grid;
+  grid-template: 1fr .3fr/100%;
+}
+
+#event_description{
+  list-style: none;
+  font-size: 1.3em;
+  text-shadow: .3px .3px white;
 }
 
 .moving_event_name{
@@ -247,20 +301,20 @@
   text-shadow: 1px 1px black;
   display: grid;
   grid-template: repeat(2, 1fr)/repeat(2,1fr);
-  grid-gap: 10%;
+  grid-gap: 10vh;
   grid-row-gap: 10vh;
 }
 
 .movee_profile div{
-  background-color: rgba(0,0,0,0.7);
+  /* background-color: rgba(0,0,0,0.7); */
   border-radius: 10px;
   border: 1px 1px solid;
-  padding: 10%;
 }
 
 .movee_pic{
-  width:50%;
-  height:50%;
+  width:70%;
+  height:40%;
+  margin: 0 auto;
 }
 .movee_pic img{
   width:100%;

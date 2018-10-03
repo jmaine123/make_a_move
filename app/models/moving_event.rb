@@ -2,7 +2,7 @@ class MovingEvent < ApplicationRecord
   has_many :movers, dependent: :nullify
   has_one :movee
   has_many :requests, dependent: :destroy
-
+  has_many :giveaways, dependent: :destroy
   geocoded_by :full_address
   after_validation :geocode, if: ->(obj){ obj.full_address.present?}
 
@@ -27,6 +27,6 @@ class MovingEvent < ApplicationRecord
   end
 
   def format_time
-    self.start_time.to_s.sub(/^(\d{1,2})(\d{2})$/,'\1:\2')
+    self.start_time = self.start_time.to_s.sub(/^(\d{1,2})(\d{2})$/,'\1:\2')
   end
 end

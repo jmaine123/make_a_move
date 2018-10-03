@@ -1,36 +1,56 @@
+<% if (current_user.meta_type == 'Movee' && current_user.meta_id == @movee.id)||( current_user.meta_type == 'Mover' && current_user.meta.movee_id == @movee.id) %>
 <div class="movee_profile">
-  <div class="">
-    <h2><%=@movee.full_name%></h2>
-    <h4><%=@movee.user.email%></h4>
-    <div class="movee_pic">
-      <img src="https://uwclintoncounty.org/wp-content/uploads/2017/12/united-way-headshot-empty.png" alt="">
-    </div>
-    <%=link_to 'Look up Movers', movers_path%><br>
-
-    <%=link_to 'Create a moving event', new_movee_moving_event_path(@movee.id)%>
+  <div class="profile_info">
+      <div class="">
+        <h1><%=@movee.full_name%></h1>
+        <h4><%=@movee.user.email%></h4>
+      </div>
+      <div class="profile_pic">
+        <img src="https://uwclintoncounty.org/wp-content/uploads/2017/12/united-way-headshot-empty.png" alt="">
+      </div>
+      <div class="">
+      <% if current_user.meta_type == "Movee" && current_user.meta_id == @movee.id%>
+        <p><%=link_to 'Look up Movers', movers_path%></p>
+        <p><%=link_to 'Create a moving event', new_movee_moving_event_path(@movee.id)%></p>
+        <p><%=link_to 'Delete Account', movee_path(@movee.id), method: :delete, data: { confirm: 'Are you sure you want to delete your account, #{@movee.full_name}?'}%></p>
+      <% end %>
+      </div>
   </div>
-<div class="movers_list">
-  <h3>List of movers</h3>
-  <%@movee.movers.each do |mover|%>
-    <li><%=mover.full_name%></li>
+  <div class="movers_list">
+    <h2>List of Movers</h2>
+    <%@movee.movers.each do |mover|%>
+      <li><%=mover.full_name%></li>
     <%end%>
-</div>
-<div class="movee_events">
-  <ol>
-    <% @movee.moving_events.each do |event|%>
-    <li><%=link_to event.name, movee_moving_event_path(@movee.id, event.id), class:'moving_event_name'%> <i><%=link_to 'Destroy', movee_moving_event_path(@movee.id, event.id),  method: :delete, data: { confirm: 'Are you sure?'}, class:'far fa-calendar-edit'%></i></li>
-    <p>Movers needed: <%=event.movers_needed%></p><p>Movers available: <%=event.movers.count%></p>
-      <%event.requests.each do |request|%>
-      Request #<%=request.id%>:<%=request.status%> <br>
-      <%= link_to 'Accept', movee_moving_event_request_path(@movee.id, event.id, request), :id => current_user.meta_id, :moving_event => request.moving_event.id, :mover_id => request.mover.id, :status => 'Accepted', method: :patch %> OR <%= link_to 'Reject'%>
+  </div>
+  <div class="profile_search">
+    <center><h2>Recent Events</h2><center>
+    <ol>
+      <% @movee.moving_events.each do |event|%>
+        <li><%=link_to event.name, movee_moving_event_path(@movee.id, event.id), class:'moving_event_name'%>
+          <i><%=link_to 'Destroy', movee_moving_event_path(@movee.id, event.id), method: :delete, data: { confirm: 'Are you sure?'}, class:'far fa-calendar-edit'%></i>
+        </li>
+        <p>Movers needed:
+          <%=event.movers_needed%></p>
+        <p>Movers available:
+          <%=event.movers.count%></p>
+        <%event.requests.each do |request|%>
+          Request #<%=request.id%>:<%=request.status%>
+          <br>
+          <%= link_to 'Accept', movee_moving_event_request_path(@movee.id, event.id, request), :id => current_user.meta_id, :moving_event => request.moving_event.id, :mover_id => request.mover.id, :status => 'Accepted', method: :patch %>
+          OR
+          <%= link_to 'Reject'%>
+        <%end%>
       <%end%>
-    <%end%>
-  </ol>
-
-</div>
-
-  <div class="">
+    </ol>
 
   </div>
 
+  <div class="ratings">
+    <h2>Items being given away</h2>
+  </div>
+
 </div>
+
+<%else%>
+<h2 class="flash"><%=flash[:notice] = "You are authorized to see this page. Please try again"%></h2>
+<%end%>

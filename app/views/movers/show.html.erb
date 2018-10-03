@@ -1,28 +1,35 @@
 
 <div class="profile_container">
 <div class="profile_info">
-
-
-  <h1><%=@mover.full_name%></h1>
-
-  <p><%= @mover.user.email%></p>
-  <p><%= @mover.location%></p>
-  <p>Age: <%= @mover.age%></p>
+  <div class="">
+    <h1><%=@mover.full_name%></h1>
+    <p><%= @mover.user.email%></p>
+  </div>
   <div class="profile_pic">
     <img src="https://uwclintoncounty.org/wp-content/uploads/2017/12/united-way-headshot-empty.png" alt="">
   </div>
+  <div class="">
+    <p>Search location: <br><%= @mover.location%></p>
+    <p>Age: <%= @mover.age%></p>
+    <p>Karma Points:<%=@mover.karma_points%></p>
+  </div>
+
+  <% if current_user.meta_type == "Mover" && current_user.meta_id == @mover.id%>
   <%=link_to "Delete Account", mover_path(@mover.id), method: :delete, data: { confirm: "Are you sure you want to delete your account #{@mover.full_name}?"}%>
+  <%end%>
 </div>
 
 <div class="map">
   <%event_params = ''%>
   <%marker =('A'..'Z').to_a %>
   <%index = 0 %>
-  <% @close_events.each do |event|%>
-  <% event_params<< "&markers=color:green%7Clabel:#{marker[index]}%7C#{event.latitude},#{event.longitude}" %>
-  <% index == 26? index = 0 : index += 1 %>
+  <% if @close_events != nil%>
+    <% @close_events.each do |event|%>
+    <% event_params<< "&markers=color:green%7Clabel:#{marker[index]}%7C#{event.latitude},#{event.longitude}" %>
+    <% index == 26? index = 0 : index += 1 %>
+    <%end%>
   <%end%>
-  <% if @mover.moving_event != nil %>
+  <% if @close_events != nil %>
   <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@mover.latitude},#{@mover.longitude}&markers=#{@mover.latitude},#{@mover.longitude}#{event_params}&11&size=640x400&key=AIzaSyDs5XjtC_PfhFPV7Yl7RCO185HnKnHqlfY",
   class: 'img-fluid img-rounded', alt: "#{@mover.full_name} on the map"%>
   <%else%>
@@ -61,6 +68,7 @@
 
 
   <ol class="ratings">
+    <%= link_to 'Leave a Review', new_mover_review_path(@mover.id), class:'leave_review'%>
     <h2>Reviews and Ratings</h2>
     <%@mover.reviews. each do |review|%>
     <%if review.comment != ''%>
@@ -71,14 +79,13 @@
         <div class="stars">
           <img src="http://pngimg.com/uploads/star/star_PNG41531.png" alt="">
         </div>
-
         <%end%>
       </div>
 
     </li>
+    <hr>
     <%end%>
     <%end%>
-    <%= link_to 'Leave a Review', new_mover_review_path(@mover.id), class:'leave_review'%>
   </ol>
 
 

@@ -16,6 +16,7 @@ class MoversController < ApplicationController
     @mover = Mover.new(mover_params)
     p "User attributes #{mover_params}"
     # @mover.create_user(mover_params[:user_attributes])
+    @mover.karma_points = 0
     if @mover.save!
       redirect_to @mover
     else
@@ -69,6 +70,8 @@ class MoversController < ApplicationController
     @mover.moving_event_id = nil
     @mover.movee_id = nil
     @mover.save
+
+    redirect_to movee_path(current_user.meta_id)
   end
 
   private

@@ -20,4 +20,8 @@ class Mover < ApplicationRecord
   def full_address
     [self.location_street, self.location_city, self.location_state ].compact.join(', ')
   end
+
+  def karma_points_increase(increment)
+    self.karma_points += increment
+  end
 end

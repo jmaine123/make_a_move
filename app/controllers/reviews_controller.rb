@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
   private
 
   def find_mover
-    @mover = Mover.find_by(params[:id])
+    @mover = Mover.find(params[:mover_id])
   end
 
   def review_params

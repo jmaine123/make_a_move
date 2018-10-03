@@ -41,6 +41,10 @@ class MovingEventsController < ApplicationController
     @moving_event.movers.each do |mover|
       mover.moving_event_id = nil
     end
+
+    @moving_event.giveaways.each do |giveaway|
+      giveaway.destroy
+    end
     @moving_event.destroy
     redirect_to movee_path(@movee.id)
 
@@ -49,10 +53,28 @@ class MovingEventsController < ApplicationController
   def show
   end
 
+  def complete_event
+    @moving_event = MovingEvent.find(params[:moving_event_id])
+    @moving_event.movers.each do |mover|
+        if mover.karma_points != nil
+            if @moving_event.difficulty == 'easy'
+              mover.karma_points_increase(3)
+            elsif @moving_event.difficulty == 'medium'
+              mover.karma_points_increase(6)
+            else
+              mover.karma_points_increase(9)
+            end
+        end
+        mover.save
+        redirect_to movee_moving_event_path(@movee.id, @moving_event.id)
+    end
+
+  end
+
   private
 
   def moving_event_params
-    params.require(:moving_event).permit(:name, :start_date, :start_time,:description, :old_location_street, :old_location_city, :old_location_state, :new_location_street, :new_location_city, :new_location_state, :amount_of_furniture, :difficulty, :movers_needed, :estimate_hours, :payment_per_hour,:giveaways, :mover_id, :movee_id)
+    params.require(:moving_event).permit(:name, :start_date, :start_time,:description, :old_location_street, :old_location_city, :old_location_state, :new_location_street, :new_location_city, :new_location_state, :amount_of_furniture, :difficulty, :movers_needed, :estimate_hours, :payment_per_hour, :mover_id, :movee_id)
   end
 
   def find_movee

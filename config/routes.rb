@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
 devise_for :users do
   get '/logout' => 'devise/sessions#destroy'
 end
@@ -15,7 +14,11 @@ end
 
   resources :movees do
     resources :moving_events do
+      collection do
+        get 'complete_event'
+      end
       resources :requests
+      resources :giveaways
     end
   end
 

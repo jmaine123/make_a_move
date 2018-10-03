@@ -1,13 +1,13 @@
 <div class="navbar">
-    <%= link_to 'Home', root_path%>
-    <%= link_to 'About Us'%>
+    <%= link_to 'Home', root_path, class:'nav-icon'%>
+    <%= link_to 'About Us', class:'nav-icon'%>
   <% if user_signed_in? %>
-    <%= link_to 'Logout', destroy_user_session_path, :method => :delete%>
+    <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class:'nav-icon'%>
 
       <% if current_user.meta_type == "Mover"%>
-      <%= link_to "Welcome, #{ current_user.username}",  mover_path(current_user.meta_id), class:"accountbtn"%>
+      <%= link_to "Welcome, #{ current_user.username}",  mover_path(current_user.meta_id), class:"accountbtn nav-icon"%>
       <%else%>
-      <%= link_to "Welcome, #{ current_user.username}",  movee_path(current_user.meta_id), class:"accountbtn"%>
+      <%= link_to "Welcome, #{ current_user.username}",  movee_path(current_user.meta_id), class:"accountbtn nav-icon"%>
 
       <%end%>
 

@@ -17,13 +17,12 @@
   <%= label_tag 'Start Time'%><br>
   <%= f.time_field :start_time, :value => "%l:%M%P", :ampm => true %><br>
   <%= f.number_field :estimate_hours, placeholder: "Estimated Time Needed"%> Hours <br>
-  <%= f.text_field :difficulty, placeholder: 'Degree of difficulty'%><br>
+  <%= label_tag 'Degree of difficulty'%><br>
+  <%= f.select :difficulty, ['easy','medium', 'hard' ], class: 'dropdown'%><br>
   <%= f.number_field :amount_of_furniture, placeholder: 'Amount of furniture'%><br>
   <%= f.number_field :movers_needed, placeholder: 'Amount of movers needed'%><br>
   <%= label_tag 'Payment per hour'%><br>
   <%= f.number_field :payment_per_hour, placeholder:"Payment per hour"%><br>
-  <%= label_tag 'Giveaways'%>
-  <%= f.check_box :giveaways %><br>
 
   <%= f.submit "Create" %>
 

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  item_name: MyString
+  condition: MyString
+  moving_event: one
+
+two:
+  item_name: MyString
+  condition: MyString
+  moving_event: two
