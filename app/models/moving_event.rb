@@ -1,6 +1,6 @@
 class MovingEvent < ApplicationRecord
   has_many :movers, dependent: :nullify
-  has_one :movee
+  has_one :movee, optional: true
   has_many :requests, dependent: :destroy
   has_many :giveaways, dependent: :destroy
   geocoded_by :full_address
