@@ -57,7 +57,7 @@
       <% @moving_event.giveaways.each do |giveaway|%>
         <li><%=giveaway.item_name%> <br>
           Condition: <%=giveaway.condition%><br>
-          <%= link_to "Remove Item", movee_moving_event_giveaway_path(@movee.id, @moving_event.id), method: :delete, data: { confirm: "Are you sure you want to delete #{giveaway.item_name} ?"}%>
+          <%= link_to "Remove Item", movee_moving_event_giveaway_path(@movee.id, @moving_event.id, giveaway.id), method: :delete, data: { confirm: "Are you sure you want to delete #{giveaway.item_name} ?", remote:true}, class:"terminate"%>
          </li>
       <%end%>
     </ol>

@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.1'
 
 gem 'faker'
+gem 'jquery-rails'
 gem 'devise'
 gem "vue-rails-form-builder"
 gem "geocoder"

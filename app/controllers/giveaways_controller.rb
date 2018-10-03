@@ -31,6 +31,11 @@ class GiveawaysController < ApplicationController
   end
 
   def Destroy
+    p @giveaway.id
+    respond_to do |format|
+      format.js
+      format.html { p 'html response'; redirect_to root_path}
+    end
   end
 
   private

@@ -12,11 +12,11 @@
       <% if current_user.meta_type == "Movee" && current_user.meta_id == @movee.id%>
         <p><%=link_to 'Look up Movers', movers_path%></p>
         <p><%=link_to 'Create a moving event', new_movee_moving_event_path(@movee.id)%></p>
-        <p><%=link_to 'Delete Account', movee_path(@movee.id), method: :delete, data: { confirm: 'Are you sure you want to delete your account, #{@movee.full_name}?'}%></p>
+        <p><%=link_to 'Delete Account', movee_path(@movee.id), method: :delete, data: { confirm: "Are you sure you want to delete your account, #{@movee.full_name}?"}%></p>
       <% end %>
       </div>
   </div>
-  <div class="movers_list">
+  <div class="ratings">
     <h2>List of Movers</h2>
     <%@movee.movers.each do |mover|%>
       <li><%=mover.full_name%></li>
@@ -27,7 +27,7 @@
     <ol>
       <% @movee.moving_events.each do |event|%>
         <li><%=link_to event.name, movee_moving_event_path(@movee.id, event.id), class:'moving_event_name'%>
-          <i><%=link_to 'Destroy', movee_moving_event_path(@movee.id, event.id), method: :delete, data: { confirm: 'Are you sure?'}, class:'far fa-calendar-edit'%></i>
+          <i><%=link_to 'Destroy', movee_moving_event_path(@movee.id, event.id), method: :delete, data: { confirm: 'Are you sure you want to delete this event?'}, class:'far fa-calendar-edit'%></i>
         </li>
         <p>Movers needed:
           <%=event.movers_needed%></p>
@@ -47,10 +47,16 @@
 
   <div class="ratings">
     <h2>Items being given away</h2>
+    <ol>
+      <%@movee.giveaways.each do |giveaway|%>
+      <li><%= giveaway.item_name%></li>
+      <%end%>
+    </ol>
+
   </div>
 
 </div>
 
 <%else%>
-<h2 class="flash"><%=flash[:notice] = "You are authorized to see this page. Please try again"%></h2>
+<h2 class="flash"><%=flash[:notice] = "You are not authorized to see this page. Please try again"%></h2>
 <%end%>
