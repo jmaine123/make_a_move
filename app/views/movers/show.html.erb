@@ -37,6 +37,7 @@
   class: 'img-fluid img-rounded', alt: "#{@mover.full_name} on the map"%>
   <%end%>
 
+<%if @close_events != nil%>
   <%= form_for @mover, :url => {:controller => 'movers', :action => "update"} do %>
   <%=collection_select(:mover, :moving_event_id, @close_events, :id, :name)%><br>
   <%=submit_tag 'Help move'%>
@@ -45,6 +46,9 @@
   <%= number_field_tag :zoom,10,within: 0..15 %>
   <%= submit_tag 'Zoom'%>
   <%end%>
+<%else%>
+  <h1>No one is currently moving in your Area </h1>
+<%end%>
 
 </div>
 

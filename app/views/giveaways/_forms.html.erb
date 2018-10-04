@@ -1,6 +1,6 @@
 <%= form_for [@movee, @moving_event, @giveaway] do |f|%>
   <%=label_tag "Name of Item"%><br>
-  <%=f.text_area :item_name, placeholder:"Name of Item you are giving"%><br>
+  <%=f.text_area :item_name, placeholder:"Name of Item you are giving away"%><br>
   <%= label_tag "Condition of the item"%><br>
   <%=f.select :condition, ['new', 'used', 'poor']%><br>
   <%=f.submit 'Add Give Away'%>

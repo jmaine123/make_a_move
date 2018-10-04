@@ -34,7 +34,7 @@
     <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@moving_event.latitude},#{@moving_event.longitude}&markers=color:green%7Clabel:A%7C#{@moving_event.latitude},#{@moving_event.longitude}&markers=color:blue%7Clabel:B%7C#{@moving_event.new_full_address}&zoom=11&size=640x400&key=AIzaSyDs5XjtC_PfhFPV7Yl7RCO185HnKnHqlfY",
     class: 'img-fluid img-rounded', alt: "#{@moving_event.name} on the map"%>
     <% else %>
-    <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@moving_event.latitude},#{@moving_event.longitude}&markers=color:green%7Clabel:A%7C#{@moving_event.latitude},#{@moving_event.longitude}&zoom=9&size=640x400&key=AIzaSyDs5XjtC_PfhFPV7Yl7RCO185HnKnHqlfY",
+    <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@moving_event.latitude},#{@moving_event.longitude}&markers=color:green%7Clabel:A%7C#{@moving_event.latitude},#{@moving_event.longitude}&zoom=11&size=640x400&key=AIzaSyDs5XjtC_PfhFPV7Yl7RCO185HnKnHqlfY",
     class: 'img-fluid img-rounded', alt: "#{@moving_event.name} on the map"%>
     <%end%>
   </div>
@@ -55,9 +55,9 @@
 
     <ol>
       <% @moving_event.giveaways.each do |giveaway|%>
-        <li><%=giveaway.item_name%> <br>
+        <li><%=giveaway.item_name%> -
           Condition: <%=giveaway.condition%><br>
-          <%= link_to "Remove Item", movee_moving_event_giveaway_path(@movee.id, @moving_event.id, giveaway.id), method: :delete, data: { confirm: "Are you sure you want to delete #{giveaway.item_name} ?", remote:true}, class:"terminate"%>
+          <%= link_to "Remove Item", movee_moving_event_giveaway_path(@movee.id, @moving_event.id, giveaway.id),  method: :delete, data: { confirm: "Are you sure you want to delete #{giveaway.item_name} ?", remote:true}, class:"terminate"%>
          </li>
       <%end%>
     </ol>

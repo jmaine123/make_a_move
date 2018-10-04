@@ -16,8 +16,8 @@
       <% end %>
       </div>
   </div>
-  <div class="ratings">
-    <h2>List of Movers</h2>
+  <div class="ratings" id="list_movers">
+    <h2 class="underline">List of Movers</h2>
     <%@movee.movers.each do |mover|%>
       <li><%=mover.full_name%></li>
     <%end%>
@@ -36,7 +36,7 @@
         <%event.requests.each do |request|%>
           Request #<%=request.id%>:<%=request.status%>
           <br>
-          <%= link_to 'Accept', movee_moving_event_request_path(@movee.id, event.id, request), :id => current_user.meta_id, :moving_event => request.moving_event.id, :mover_id => request.mover.id, :status => 'Accepted', method: :patch %>
+          <%= link_to 'Accept', movee_moving_event_request_path(@movee.id, event.id, request.id), :id => current_user.meta_id, :moving_event_id => request.moving_event.id, :mover_id => request.mover.id, :status => 'Accepted', method: :put %>
           OR
           <%= link_to 'Reject'%>
         <%end%>

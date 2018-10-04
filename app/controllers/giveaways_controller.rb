@@ -1,7 +1,7 @@
 class GiveawaysController < ApplicationController
   before_action :find_moving_event
   before_action :find_movee
-  before_action :find_giveaway
+  before_action :find_giveaway, only:[:destroy]
 
   def new
     @giveaway = Giveaway.new
@@ -25,17 +25,20 @@ class GiveawaysController < ApplicationController
   end
 
   def index
-    @giveaway. Giveaway.all
+    @giveaway = Giveaway.all
   end
 
   def show
   end
 
-  def Destroy
+  def destroy
+    p @giveaway = Giveaway.find(params[:id])
+    p "This is the params"
+    p @giveaway
     @giveaway.destroy
+    p @giveaway
     respond_to do |format|
       format.js
-      format.html { p 'html response'; redirect_to root_path}
     end
   end
 
@@ -54,6 +57,6 @@ class GiveawaysController < ApplicationController
   end
 
   def find_giveaway
-    p @giveaway = Giveaway.find(params[:id])
+    @giveaway = Giveaway.find(params[:id])
   end
 end

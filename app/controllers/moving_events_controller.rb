@@ -66,8 +66,8 @@ class MovingEventsController < ApplicationController
             end
         end
         mover.save
-        redirect_to movee_moving_event_path(@movee.id, @moving_event.id)
     end
+    redirect_to movee_moving_event_path(@movee.id, @moving_event.id)
 
   end
 

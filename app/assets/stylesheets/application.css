@@ -73,6 +73,8 @@ a:hover{
    text-shadow: .2px .2px rgb(242, 205, 184);
  }
 
+
+
  :root{
    --main: rgb(234, 81, 21);
    --lightmain: rgba(242, 205, 184);
@@ -81,6 +83,7 @@ a:hover{
  input{
    border-radius: 5px;
    border: 1px solid var(--main);
+   font-size: 1em;
  }
  .navbar{
    font-size: 1em;
@@ -143,7 +146,7 @@ a:hover{
  }
 
  .dropdown{
-   font-size: 1.5em;
+   height:5vh;
  }
 
  .container{
@@ -248,10 +251,12 @@ a:hover{
 .ratings{
   overflow: auto;
   box-shadow: 8px 8px 8px 8px black;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.7);
   list-style: none;
   text-shadow: .1px .1px white;
-  font-size: 1.2em;
+  font-size: 1.3em;
+  border:1px solid var(--main);
+  border-radius: 10px;
 }
 
 .leave_review{
@@ -323,4 +328,36 @@ a:hover{
 
 .movers_list{
   text-align: center;
+}
+
+textarea{
+  width: 80%;
+  height: 20vh;
+  font-size: 1.2em;
+  border:1px solid black;
+  border-radius: 5px;
+  background: var(--lightmain);
+  margin-top: 7%;
+}
+
+#list_movers{
+  text-align: center;
+  font-size: 1.7em;
+}
+
+.underline{
+  text-decoration: underline;
+}
+
+.index{
+  overflow: auto;
+  box-shadow: 8px 8px 8px 8px black;
+  background-color: rgba(0,0,0,0.7);
+  list-style: none;
+  text-shadow: .1px .1px white;
+  font-size: 1.3em;
+  border:1px solid var(--main);
+  border-radius: 10px;
+  width:50%;
+  margin: 10% auto;
 }

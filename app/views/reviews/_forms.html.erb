@@ -1,6 +1,10 @@
-<%=form_for([@mover, @review]) do |f|%>
-<%=f.text_area :comment, placeholder:'Leave a short comment'%><br><br>
-<%=label_tag 'Movers rating from 1 to 5 (5 being the best)'%><br>
-<%=f.number_field :mover_rating, in:1..5 %><br><br>
-<%=f.submit 'Enter Review'%>
-<%end%>
+<br>
+<br>
+<div class="forms">
+  <%=form_for([@mover, @review]) do |f|%>
+  <%=f.text_area :comment, placeholder:'Leave a short comment'%><br><br>
+  <%=label_tag 'Movers rating from 1 to 5 (5 being the best)'%><br>
+  <%=f.number_field :mover_rating, in:1..5 %><br><br>
+  <%=f.submit 'Enter Review'%>
+  <%end%>
+</div>

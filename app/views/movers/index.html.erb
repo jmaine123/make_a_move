@@ -1,7 +1,9 @@
 <h1>List of available movers</h1>
+<div class="index">
+  <ol>
+    <%@movers.each do |m|%>
+    <li><%=link_to m.full_name, m%></li>
+    <%end%>
+  </ol>
 
-<ol>
-<%@movers.each do |m|%>
-<li><%=link_to m.first_name, m%></li>
-<%end%>
-</ol>
+</div>
