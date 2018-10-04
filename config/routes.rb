@@ -7,7 +7,7 @@ end
   resources :movers do
     collection do
       # patch '/movers/:mover_id', to: 'movers#remove_mover'
-      get 'remove_mover'
+      get 'removemover'
     end
     resources :reviews
   end

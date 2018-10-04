@@ -65,7 +65,7 @@ class MoversController < ApplicationController
     @movers = Mover.all
   end
 
-  def remove_mover
+  def removemover
     @mover = Mover.find(params[:id])
     @mover.moving_event_id = nil
     @mover.movee_id = nil
@@ -99,7 +99,7 @@ class MoversController < ApplicationController
   def find_close_events
     @close_events = []
     MovingEvent.all.each do |event|
-      if @mover.distance_to(event, :mi) < 20
+      if @mover.distance_to(event, :mi) < 40
         @close_events<< event
       end
     end

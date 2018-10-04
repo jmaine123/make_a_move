@@ -1,7 +1,8 @@
 <h1>Moving Events Planned</h1>
+<div class="list_index">
+    <% @movee.moving_events.each do |e|%>
 
-<% @movee.moving_events.each do |e|%>
+    <li><%=link_to e.name, movee_moving_event_path(@movee.id, e.id), class:"list"%></li>
 
-<%=link_to e.name, movee_moving_event_path(@movee.id, e.id)%><br>
-
-<%end%>
+    <%end%>
+</div>

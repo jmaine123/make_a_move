@@ -103,6 +103,12 @@ a:hover{
    font-size: 1.3em;
  }
 
+ .navbar a:hover{
+   font-size: 1.5em;
+   color: red;
+   text-shadow: 1px 1px white;
+ }
+
   .forms{
     width:40%;
     height:auto;
@@ -360,4 +366,43 @@ textarea{
   border-radius: 10px;
   width:50%;
   margin: 10% auto;
+}
+
+@keyframes fadein { from {opacity:0} to {opacity:1} }
+.content{
+  animation:fadein .7s;
+}
+
+
+#mover_moving_event_id{
+  color:white;
+  background-color: var(--main);
+  height:5vh;
+  width: 60%;
+  font-size: 1.3em;
+  margin-bottom: 2%;
+  margin-top: 2%;
+}
+
+.close_events_scroll{
+  text-align: center;
+}
+
+.submit{
+  background-color: green;
+  color:white;
+  border: 1px solid black;
+}
+
+.list{
+  font-size: 2em;
+  overflow: auto;
+  box-shadow: 8px 8px 8px 8px black;
+  background-color: rgba(0,0,0,0.7);
+  list-style: none;
+  text-shadow: .1px .1px white;
+  border:1px solid var(--main);
+  border-radius: 10px;
+  width:100%;
+  margin:0 auto;
 }

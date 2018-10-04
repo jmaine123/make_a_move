@@ -27,6 +27,13 @@ class MovingEvent < ApplicationRecord
   end
 
   def format_time
-    self.start_time = self.start_time.to_s.sub(/^(\d{1,2})(\d{2})$/,'\1:\2')
+    new_time = self.start_time.split(":")
+      if new_time[0].to_i > 12
+          new_time[0] = (new_time[0].to_i - 12).to_s
+      else
+      new_time[0] = new_time[0].split('').pop
+      return new_time.join(":") + " "+ "am"
+      end
+      return new_time.join(":") + " "+ "pm"
   end
 end

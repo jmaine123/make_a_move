@@ -12,6 +12,7 @@
       <% if current_user.meta_type == "Movee" && current_user.meta_id == @movee.id%>
         <p><%=link_to 'Look up Movers', movers_path%></p>
         <p><%=link_to 'Create a moving event', new_movee_moving_event_path(@movee.id)%></p>
+        <%= link_to 'Edit your Account', edit_movee_path(@movee.id)%><br>
         <p><%=link_to 'Delete Account', movee_path(@movee.id), method: :delete, data: { confirm: "Are you sure you want to delete your account, #{@movee.full_name}?"}%></p>
       <% end %>
       </div>

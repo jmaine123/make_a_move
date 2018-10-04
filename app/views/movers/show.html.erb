@@ -11,10 +11,12 @@
   <div class="">
     <p>Search location: <br><%= @mover.location%></p>
     <p>Age: <%= @mover.age%></p>
+    <p>Phone Number: <%= @mover.phone_number%></p>
     <p>Karma Points:<%=@mover.karma_points%></p>
   </div>
 
   <% if current_user.meta_type == "Mover" && current_user.meta_id == @mover.id%>
+  <%= link_to 'Edit your Account', edit_mover_path(@mover.id)%><br>
   <%=link_to "Delete Account", mover_path(@mover.id), method: :delete, data: { confirm: "Are you sure you want to delete your account #{@mover.full_name}?"}%>
   <%end%>
 </div>
@@ -30,22 +32,23 @@
     <%end%>
   <%end%>
   <% if @close_events != nil %>
-  <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@mover.latitude},#{@mover.longitude}&markers=#{@mover.latitude},#{@mover.longitude}#{event_params}&zoom=#{params[:zoom]}&size=640x400&key=AIzaSyDs5XjtC_PfhFPV7Yl7RCO185HnKnHqlfY",
+  <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@mover.latitude},#{@mover.longitude}&markers=#{@mover.latitude},#{@mover.longitude}#{event_params}&zoom=11&size=640x400&key=AIzaSyDs5XjtC_PfhFPV7Yl7RCO185HnKnHqlfY",
   class: 'img-fluid img-rounded', alt: "#{@mover.full_name} on the map"%>
   <%else%>
-  <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@mover.latitude},#{@mover.longitude}&markers=#{@mover.latitude},#{@mover.longitude}&zoom=#{[:zoom]}&size=640x400&key=AIzaSyDs5XjtC_PfhFPV7Yl7RCO185HnKnHqlfY",
+  <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@mover.latitude},#{@mover.longitude}&markers=#{@mover.latitude},#{@mover.longitude}&zoom=11&size=640x400&key=AIzaSyDs5XjtC_PfhFPV7Yl7RCO185HnKnHqlfY",
   class: 'img-fluid img-rounded', alt: "#{@mover.full_name} on the map"%>
   <%end%>
 
 <%if @close_events != nil%>
-  <%= form_for @mover, :url => {:controller => 'movers', :action => "update"} do %>
-  <%=collection_select(:mover, :moving_event_id, @close_events, :id, :name)%><br>
-  <%=submit_tag 'Help move'%>
-  <% end%>
-  <%=form_with do%>
-  <%= number_field_tag :zoom,10,within: 0..15 %>
-  <%= submit_tag 'Zoom'%>
-  <%end%>
+
+  <div class="close_events_scroll">
+    <%= form_for @mover, :url => {:controller => 'movers', :action => "update"} do %>
+    <%=collection_select(:mover, :moving_event_id, @close_events, :id, :name)%><br>
+    <%=submit_tag 'HELP MOVE', class:"submit"%>
+    <% end%>
+  </div>
+
+
 <%else%>
   <h1>No one is currently moving in your Area </h1>
 <%end%>
@@ -73,7 +76,9 @@
 
 
   <ol class="ratings">
+    <% if current_user.meta_type == "Movee"%>
     <%= link_to 'Leave a Review', new_mover_review_path(@mover.id), class:'leave_review'%>
+    <%end%>
     <h2>Reviews and Ratings</h2>
     <%@mover.reviews. each do |review|%>
     <%if review.comment != ''%>
