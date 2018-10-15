@@ -1,24 +1,3 @@
-# README
+# Make A Move
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This is a application where users who need to move to a new apartment or just move furniture into their current apartment can find other users (movers) to help them move. This is a great way to create a community, say goodbye to old neighbors and welcome new neighbors.
